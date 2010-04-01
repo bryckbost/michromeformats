@@ -8,7 +8,7 @@
     "popup": "popup.html"
   },
   "content_scripts": [ {
-      "js": [ "contentscript.js" ],
+      "js": [ "microformat.js", "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {

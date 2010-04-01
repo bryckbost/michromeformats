@@ -11,12 +11,8 @@ function MicroformatsBookmarklet() {
     // load jQuery
     
     var jqe = null;
-    var run_once = 0;
     var found = 0;
-    var photoguid = 0;
-    var photocomplete = [];
     var nl = '%0D%0A'; // %0D%0A = nl! yay!
-
 
     $j = jQuery.noConflict();
 
@@ -26,7 +22,7 @@ function MicroformatsBookmarklet() {
 
     	keys = ['fn', 'n', 'org', 'title', 'role', 'note', 'family-name', 'given-name', 'additional-name', 'honorific-prefix', 'honorific-suffix', 'nickname', 'category', 'note'];
     	for (i = 0; i < keys.length; i++) {
-    	    kv = $j('.' + keys[i], hc)
+    	    kv = $j('.' + keys[i], hc);
     		if (kv.length) {
     		    hCard[keys[i]] = cleanString(kv[0].title ? kv[0].title : kv.text(), true);
     		}
@@ -269,25 +265,6 @@ function MicroformatsBookmarklet() {
     	}
     }
 
-    function ie_microformat() {
-        // context is A element
-        var f = null;
-        f = document.getElementById('_mf_iframe');
-        if (f) {
-            document.body.removeChild(f);
-        }
-        f = document.createElement('iframe');
-        f.style.position = 'absolute';
-        f.style.left = '-1000px';
-        f.style.width = '10px';
-        f.id = "_mf_iframe";
-        document.body.appendChild(f);
-        // should I recollect?
-        f = document.getElementById('_mf_iframe');
-        f.src = server + '/save-microformats.html?' + this.href.substr(this.href.indexOf('BEGIN')) + '#' + this.innerHTML;
-        return false;
-    }
-    
     var cleanDateTime = function(t) {
     	// 20060913T1400-0700
     	// 2006-09-13T14:00-07:00
@@ -359,10 +336,4 @@ function MicroformatsBookmarklet() {
     import_microformat('vcard', hCard);
     import_microformat('vevent', hCalendar);
     emptyCheck();
-    styles();
-    if (msie && found) {
-        $j('#MF_box A').click(ie_microformat);
-    }
-    positionMicroformatBox();
-    $j('#MF_box').fadeIn(600);
 }
