@@ -3,7 +3,9 @@
 <head>
 <script>
   var hCards = {};
-
+  var hCalendars = {};
+  var hReviews = {};
+  
   chrome.extension.onRequest.addListener(function onRequest(request, sender, sendResponse) {
       hCards[sender.tab.id] = request.hCards;
       for (var i = 0; i < hCards[sender.tab.id].length; ++i) {
@@ -14,9 +16,29 @@
             hCards[sender.tab.id][i] = hCard;
             console.log(hCard);
         }
-        console.log(hCards[sender.tab.id]);
-        chrome.pageAction.show(sender.tab.id);
-        sendResponse({});
+      
+      hCalendars[sender.tab.id] = request.hCalendars;
+      for (var i = 0; i < hCalendars[sender.tab.id].length; ++i) {
+            hCalendar = hCalendars[sender.tab.id][i];
+            hCalendar = JSON.parse(hCalendar);
+            if (hCalendar.n != undefined)
+                hCalendar.n = JSON.parse(hCalendar.n);
+            hCalendars[sender.tab.id][i] = hCalendar;
+            console.log(hCalendar);
+        }
+      
+      hReviews[sender.tab.id] = request.hReviews;
+      for (var i = 0; i < hReviews[sender.tab.id].length; ++i) {
+            hReview = hReviews[sender.tab.id][i];
+            hReview = JSON.parse(hReview);
+            if (hReview.n != undefined)
+                hReview.n = JSON.parse(hReview.n);
+            hReviews[sender.tab.id][i] = hReview;
+            console.log(hReview);
+        }
+      
+      chrome.pageAction.show(sender.tab.id);
+      sendResponse({});
     });
 </script>
 </head>

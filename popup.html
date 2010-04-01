@@ -103,9 +103,17 @@ body {
 	}
 	
 	chrome.tabs.getSelected(null, function(tab) {
-	    var hCards = chrome.extension.getBackgroundPage().hCards[tab.id];
-	    for (var i = 0; i < hCards.length; ++i)
-	        generateHTML(hCards[i])
+    var hCards = chrome.extension.getBackgroundPage().hCards[tab.id];
+    for (var i = 0; i < hCards.length; ++i)
+        generateHTML(hCards[i])
+        
+    var hCalendars = chrome.extension.getBackgroundPage().hCalendars[tab.id];
+    for (var i = 0; i < hCalendars.length; ++i)
+        generateHTML(hCalendars[i])
+  	        
+    var hReviews = chrome.extension.getBackgroundPage().hReviews[tab.id];
+    for (var i = 0; i < hReviews.length; ++i)
+        generateHTML(hReviews[i])
 	});
 	</script>
 	</head>
