@@ -1,0 +1,20 @@
+{
+  "name": "Microformat Viewer",
+  "version": "0.0.1",
+  "description": "Displays any microformats that are on the page.",
+  "page_action": {
+    "default_icon": "microformats-logo.png",
+    "default_title" : "This page has a microformat. Awesome!",
+    "popup": "popup.html"
+  },
+  "content_scripts": [ {
+      "js": [ "microformat.js", "hcard.js", "contentscript.js" ],
+      "matches": [ "http://*/*", "https://*/*" ]
+   } ],
+  "icons" : {
+    "48" : "microformats-logo.png",
+    "128" : "microformats-logo-128.png"
+  },
+  "permissions": [ "http://*/*", "https://*/*" ],
+  "background_page": "background.html"
+}
