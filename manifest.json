@@ -1,18 +1,18 @@
 {
   "name": "Microformat Viewer",
   "version": "0.0.1",
-  "description": "Displays any microformats that are on the page.",
-  "browser_action": {
-    "default_icon": "microformats-logo.png",
-    "default_title" : "This page has a microformat. Awesome!",
+  "description": "Displays any microformats on the page. Supports HCard, HEvent and HReview.",
+  "page_action": {
+    "default_icon": "microformats-logo-16.png",
+    "default_title" : "This page has a microformat. Hooray!",
     "popup": "popup.html"
   },
   "content_scripts": [ {
-      "js": [ "microformat.js", "contentscript.js" ],
+      "js": [ "jquery-1.4.1.min.js", "microformat.js", "hcard.js", "hcalendar.js", "hreview.js", "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {
-    "48" : "microformats-logo.png",
+    "48" : "microformats-logo-48.png",
     "128" : "microformats-logo-128.png"
   },
   "permissions": [ "http://*/*", "https://*/*" ],

@@ -1,12 +1,116 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <style>
-    body {
-      min-width:500px;
-      min-height:100px;
-      overflow-x:hidden;
-    }
-  </style>
-</head>
-</html>
+<style>
+body {
+  min-width:500px;
+  overflow-x:hidden;
+    color: #000;
+}
+	</style>
+	<script type="text/javascript" src="jquery-1.4.1.min.js"></script>
+	<script type="text/javascript" src="template.js"></script>
+	<script>
+	function generateHTML(hCard) {
+	    var labels = {
+	        'fn':           'Formatted name',
+	        'n':            'Name',
+	        'family-name':      'Family name',
+	        'given-name':       'Given name',
+	        'additional-name':  'Additional name',
+	        'honorific-prefix': 'Honorific Prefix',
+   'honorific-suffix': 'Honorific Suffix',
+        'adr':          'Address',
+        'post-office-box':  'Post Office Box',
+        'extended-address': 'Extended Address',
+        'street-address':   'Street Address',
+        'locality':     'Locality',
+        'region':       'Region',
+        'postal-code':      'Postal Code',
+        'country-name':     'Country Name',
+        'type':         'Type',
+        'value':        'Value',
+        'agent':        'Agent',
+        'bday':         'Birthday',
+        'category':     'Category',
+        'class':        'Class',
+        'email':        'Email',
+        'latitude':     'Latitude',
+        'longitude':        'Longitude',
+        'key':          'Key',
+        'label':        'Label',
+        'logo':         'Logo',
+        'mailer':       'Mailer',
+        'nickname':     'Nickname',
+        'note':         'Note',
+        'org':          'Organization',
+        'organization-name':    'Organization Name',
+        'organization-unit':    'Organization Unit',
+        'photo':        'Photo',
+        'rev':          'Revision',
+        'role':         'Role',
+        'sort-string':      'Sort String',
+        'sound':        'Sound',
+        'tel':          'Telephone',
+        'title':        'Title',
+        'tz':           'Timezone',
+        'uid':          'User ID',
+        'url':          'Url'
+    };
+
+    var properties = ['fn', 'n', 'adr', 'agent', 'bday', 'catagory', 'class', 'email', 'geo', 'key', 'label', 'logo', 'mailer',
+                'nickname', 'note', 'org', 'photo', 'rev', 'role', 'sort-string', 'sound', 'tel', 'title', 'tz', 'uid', 'url'];
+
+    var templates = {
+        vcard:      '<li id="hcard-${id}" class="vcard">${content}</li>',
+        string :    '\t<label>${label}<\/label>\n<span class="${key}">${value}</span>\n',
+        outerContent :  '\t<label>${label}<\/label>\n<div class="${key}">${value}</div>',
+        innerContent :  '\t\t<label>${label}<\/label>\n<span class="${key}">${value}</span>',
+        photo :     '\t<img src="${value}" class="${key}" />'
+    };
+	
+	
+	    var content = '';
+	    var innerContent;
+	    for(property in properties) {
+	        if(typeof(hCard[properties[property]]) == 'string')
+	            content += templates['string'].process({label:labels[properties[property]], key:properties[property], value:hCard[properties[property]]}) + "\n";
+	        //else if(properties[property] == 'photo') {
+	        //  content += templates['photo'].process({key:properties[property], value:hCard[properties[property]]}) + "\n";
+	        //  content += templates['string'].process({label:labels[properties[property]], key:properties[property], value:hCard[properties[property]]}) + "\n";
+	        //}
+	        else if(properties[property] == 'n' && typeof(hCard[properties[property]]) != 'undefined') {
+	            innerContent = '';
+	            for (var key in hCard[properties[property]])
+	                    innerContent += templates['innerContent'].process({label:labels[key], key:key, value:hCard[properties[property]][key]}) + "\n";
+	            content += templates['outerContent'].process({label:labels[properties[property]], key:properties[property], value:innerContent}) + "\n";
+	        }
+	        else if(typeof(hCard[properties[property]]) != 'undefined') {
+	            for(i = 0; i < hCard[properties[property]].length; i++) {
+	                if(typeof(hCard[properties[property]][i]) == 'string') {
+	                    content += templates['string'].process({label:labels[properties[property]], key:properties[property], value:hCard[properties[property]]}) + "\n";           
+	                } else {
+	                    innerContent = '';
+	                    for (var key in hCard[properties[property]][i])
+	                        innerContent += templates['innerContent'].process({label:labels[key], key:key, value:hCard[properties[property]][i][key]}) + "\n";
+	                    content += templates['outerContent'].process({label:labels[properties[property]], key:properties[property], value:innerContent}) + "\n";
+	                }
+	            }
+	        }
+	    }
+	
+	    var resultstr = templates.vcard.process({id : hCard.fn.replace(' ','-').replace(/[^A-Za-z0-9-_]/g,''), content: content}) + "\n";
+	    $("#hCards").append(resultstr);
+	}
+	
+	chrome.tabs.getSelected(null, function(tab) {
+	    var hCards = chrome.extension.getBackgroundPage().hCards[tab.id];
+	    for (var i = 0; i < hCards.length; ++i)
+	        generateHTML(hCards[i])
+	});
+	</script>
+	</head>
+	<body>
+	    <ul id="hCards">
+	    </ul>
+	</body>
+	</html>
