@@ -10,5 +10,4 @@ function findMicroformats() {
 		chrome.extension.sendRequest({hCalendars: hCalendars});
 		chrome.extension.sendRequest({hReviews: hReviews});
 	}
-
 }
