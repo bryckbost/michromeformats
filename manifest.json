@@ -2,13 +2,13 @@
   "name": "Microformat Viewer",
   "version": "0.0.1",
   "description": "Displays any microformats that are on the page.",
-  "page_action": {
+  "browser_action": {
     "default_icon": "microformats-logo.png",
     "default_title" : "This page has a microformat. Awesome!",
     "popup": "popup.html"
   },
   "content_scripts": [ {
-      "js": [ "microformat.js", "hcard.js", "contentscript.js" ],
+      "js": [ "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {

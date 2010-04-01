@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+  var hCards = {};
+
+  chrome.extension.onRequest.addListener(function onRequest(request, sender, sendResponse) {
+      hCards[sender.tab.id] = request.hCards;
+      for (var i = 0; i < hCards[sender.tab.id].length; ++i) {
+            hCard = hCards[sender.tab.id][i];
+            hCard = JSON.parse(hCard);
+            if (hCard.n != undefined)
+                hCard.n = JSON.parse(hCard.n);
+            hCards[sender.tab.id][i] = hCard;
+            console.log(hCard);
+        }
+        console.log(hCards[sender.tab.id]);
+        chrome.pageAction.show(sender.tab.id);
+        sendResponse({});
+    });
+</script>
+</head>
+</html>
