@@ -1,13 +1,15 @@
 <html>
 <head>
-<script>
-	chrome.tabs.getSelected(null, function(tab) {
-    var hCards = chrome.extension.getBackgroundPage().hCards[tab.id];
-    for (var i = 0; i < hCards.length; ++i)
-      return false;
-	});
-</script>
+  <script type="text/javascript" src="jquery.min.js"></script> 
+  <script>
+  	chrome.tabs.getSelected(null, function(tab) {
+      var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
+  	});
+  </script>
 </head>
 <body>
+  <div id="microformats">
+    
+  </div>
 </body>
 </html>

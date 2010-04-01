@@ -1,5 +1,5 @@
 {
-  "name": "Microformat Viewer",
+  "name": "Michromeformats",
   "version": "0.0.1",
   "description": "Displays any microformats on the page. Supports HCard, HEvent and HReview.",
   "page_action": {
@@ -8,7 +8,7 @@
     "popup": "popup.html"
   },
   "content_scripts": [ {
-      "js": [ "jquery-1.4.1.min.js", "microformat.js", "hcard.js", "hcalendar.js", "hreview.js", "contentscript.js" ],
+      "js": [ "jquery.min.js", "microformat.js", "hcard.js", "hcalendar.js", "hreview.js", "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {

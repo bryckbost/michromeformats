@@ -89,7 +89,7 @@ Date.parseISO8601 = function(text) {
 Microformat = {
   define : function(name, spec) {
     var mf = function(node, data) {
-      this.parentElement = node;
+      //this.parentElement = node;
       Microformat.extend(this, data);
     };
     
@@ -120,7 +120,7 @@ Microformat = {
           if (firstOnly && (first = selection[0])) {
             data[this._propFor(item)] = this._extractData(first, 'simple', data);
           } else if (selection.length > 0) {
-            data[this._propFor(item) + 'List'] = selection.map(function(node) {
+            data[this._propFor(item)] = selection.map(function(node) {
               return this._extractData(node, 'simple', data);
             }, this);
           }
@@ -133,7 +133,7 @@ Microformat = {
               if (firstOnly && (first = selection[0])) {
                 data[this._propFor(cls)] = this._extractData(first, item[cls], data);
               } else if (selection.length > 0) {
-                data[this._propFor(cls + 'List')] = selection.map(function(node) {
+                data[this._propFor(cls)] = selection.map(function(node) {
                   return this._extractData(node, item[cls], data);
                 }, this);
               }
@@ -210,10 +210,7 @@ Microformat = {
     _propFor : function(name) {
       this.__propCache = this.__propCache || {};
       if (prop = this.__propCache[name]) return prop;
-      return this.__propCache[name] = name.replace(/(-(.))/g, function() {
-        // this isn't going to work on old safari without the fix....hmmm
-        return arguments[2].toUpperCase();
-      });
+      return this.__propCache[name] = name;
     },
     _handle : function(prop, item, data) {
       if (this.handlers[prop]) this.handlers[prop].call(this, item, data);
@@ -221,30 +218,22 @@ Microformat = {
   },
   // In built getElementsByClassName
   $$ : function(className, context) {
-    if (typeof Sizzle == 'function') {
-      return Sizzle('.'+className, context);
-    } else if (typeof Selector == 'function') {
-      return Selector.findChildElements(context, $A(['.'+className]));
-    } else if (typeof jQuery == 'function') {
-      return jQuery('.'+className, context)
-    } else {
-      context = context || document;
-      var nodeList;
-      
-      if (context == document || context.nodeType == 1) {
-        if (typeof document.evaluate == 'function') {
-          var xpath = document.evaluate(".//*[contains(concat(' ', @class, ' '), ' " + className + " ')]", 
-                                        context, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
-          var els = [];
-          for (var i = 0, l = xpath.snapshotLength; i < l; i++)
-           els.push(xpath.snapshotItem(i));
-          return els;
-        } else nodeList = context.getElementsByTagName('*');
-      } else nodeList = context;
-      
-      var re = new RegExp('(^|\\s)' + className + '(\\s|$)');
-      return Array.filter(nodeList, function(node) {  return node.className.match(re) });
-    }
+    context = context || document;
+    var nodeList;
+
+    if (context == document || context.nodeType == 1) {
+      if (typeof document.evaluate == 'function') {
+        var xpath = document.evaluate(".//*[contains(concat(' ', @class, ' '), ' " + className + " ')]", 
+                                      context, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+        var els = [];
+        for (var i = 0, l = xpath.snapshotLength; i < l; i++)
+         els.push(xpath.snapshotItem(i));
+        return els;
+      } else nodeList = context.getElementsByTagName('*');
+    } else nodeList = context;
+
+    var re = new RegExp('(^|\\s)' + className + '(\\s|$)');
+    return Array.filter(nodeList, function(node) {  return node.className.match(re) });
   },
   // In built Object.extend equivilent
   extend : function(dest, source) {

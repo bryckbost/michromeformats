@@ -2,12 +2,24 @@
 <html>
 <head>
 <script>
-  var hCards = {};
-  var hCalendars = {};
-  var hReviews = {};
+  var hcards = {};
+  var hcalendars = {};
+  var hreviews = {};
   
   chrome.extension.onRequest.addListener(function onRequest(request, sender, sendResponse) {
-    chrome.pageAction.show(sender.tab.id);
+    var tab_id = sender.tab.id;
+    hcards[tab_id] = request.hcards;
+        
+    for (var i = 0; i < hcards[tab_id].length; ++i) {
+        hcard = hcards[tab_id][i];
+        hcard = JSON.parse(hcard);
+        if (hcard.n != undefined)
+            hcard.n = JSON.parse(hcard.n);
+            
+        hcards[tab_id][i] = hcard;
+    }
+    
+    chrome.pageAction.show(tab_id);
     sendResponse({});
   });
 </script>

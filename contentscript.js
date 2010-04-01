@@ -1,13 +1,13 @@
-findMicroformats();
+discover_microformats();
 
-function findMicroformats() {
-	var hCards = HCard.discover();
-	var hCalendars = HCalendar.discover();
-	var hReviews = HReview.discover();
+function discover_microformats() {
+	var hcards = HCard.discover();
+  var hcalendars = HCalendar.discover();
+  var hreviews = HReview.discover();
 	
-	if(hCards.length > 0 || hCalendars.length > 0 || hReviews.length > 0) {
-		chrome.extension.sendRequest({hCards: hCards});
-		chrome.extension.sendRequest({hCalendars: hCalendars});
-		chrome.extension.sendRequest({hReviews: hReviews});
+	if(hcards.length > 0 || hcalendars.length > 0 || hreviews.length > 0) {
+		chrome.extension.sendRequest({hcards: hcards});
+    chrome.extension.sendRequest({hcalendars: hcalendars});
+    chrome.extension.sendRequest({hreviews: hreviews});
 	}
 }
