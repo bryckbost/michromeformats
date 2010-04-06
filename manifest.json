@@ -15,6 +15,6 @@
     "48" : "microformats-logo-48.png",
     "128" : "microformats-logo-128.png"
   },
-  "permissions": [ "http://*/*", "https://*/*" ],
+  "permissions": [ "tabs", "http://*/*", "https://*/*" ],
   "background_page": "background.html"
 }

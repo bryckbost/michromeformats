@@ -2,25 +2,26 @@
 <html>
 <head>
 <script>
+  // Global accessor that the popup uses.
   var hcards = {};
   var hcalendars = {};
   var hreviews = {};
-  
-  chrome.extension.onRequest.addListener(function onRequest(request, sender, sendResponse) {
-    var tab_id = sender.tab.id;
-    hcards[tab_id] = request.hcards;
-        
-    for (var i = 0; i < hcards[tab_id].length; ++i) {
-        hcard = hcards[tab_id][i];
-        hcard = JSON.parse(hcard);
-        if (hcard.n != undefined)
-            hcard.n = JSON.parse(hcard.n);
-            
-        hcards[tab_id][i] = hcard;
+
+  function updateAddress(tabId) {
+    chrome.tabs.sendRequest(tabId, {}, function() {
+      chrome.pageAction.show(tabId);
+    });
+  }
+
+  chrome.tabs.onUpdated.addListener(function(tabId, change, tab) {
+    if (change.status == "complete") {
+      updateAddress(tabId);
     }
-    
-    chrome.pageAction.show(tab_id);
-    sendResponse({});
+  });
+
+  // Ensure the current selected tab is set up.
+  chrome.tabs.getSelected(null, function(tab) {
+    updateAddress(tab.id);
   });
 </script>
 </head>
