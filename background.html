@@ -9,6 +9,8 @@
 
   function updateAddress(tabId) {
     chrome.tabs.sendRequest(tabId, {}, function() {
+      hcards[tabId] = hcards;
+      
       chrome.pageAction.show(tabId);
     });
   }

@@ -9,10 +9,8 @@ var discover_microformats = function() {
 	var hcards = HCard.discover();
   var hcalendars = HCalendar.discover();
   var hreviews = HReview.discover();
-  var microformats = new Array(hcards, hcalendars, hreviews);
   
   console.log('hcards: ' + hcards.length);
   console.log('hcalendars: ' + hcalendars.length);
   console.log('hreviews: ' + hreviews.length);
-  console.log(microformats);
-}
+};
