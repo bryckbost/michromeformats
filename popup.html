@@ -7,6 +7,16 @@
       var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
       var hcalendars = chrome.extension.getBackgroundPage().hcalendars[tab.id];
       var hreviews = chrome.extension.getBackgroundPage().hreviews[tab.id];
+      
+      jQuery.each(hcards, function(i, val) {
+        $("#hcards").append('<li>' + hcards[i]["fn"] + '</li>');
+      });
+      jQuery.each(hcalendars, function(i, val) {
+        $("#hcalendars").append('<li>' + hcalendars[i]["summary"] + '</li>');
+      });
+      jQuery.each(hreviews, function(i, val) {
+        $("#hreviews").append('<li>' + hreviews[i]["summary"] + '</li>');
+      });
     });
           
   </script>
@@ -18,7 +28,15 @@
 </head>
 <body>
   <div id="microformats">
+    <ul id="hcards">
     
+    </ul>
+    <ul id="hcalendars">
+    
+    </ul>
+    <ul id="hreviews">
+    
+    </ul>
   </div>
 </body>
 </html>
