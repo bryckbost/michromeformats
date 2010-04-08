@@ -2,17 +2,20 @@
 <head>
   <script type="text/javascript" src="jquery.min.js"></script> 
   <script>
+  
     chrome.tabs.getSelected(null, function(tab) {
       var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
       var hcalendars = chrome.extension.getBackgroundPage().hcalendars[tab.id];
       var hreviews = chrome.extension.getBackgroundPage().hreviews[tab.id];
-    });    
+    });
+          
   </script>
+  
+  <style>
+    body { margin: 0; padding: 0; }
+    #microformats { width: 360px; height: 480px;}
+  </style>
 </head>
-<style>
-  body { margin: 0; padding: 0; }
-  #microformats { width: 360px; height: 480px;}
-</style>
 <body>
   <div id="microformats">
     
