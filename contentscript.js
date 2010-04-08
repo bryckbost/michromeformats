@@ -1,11 +1,6 @@
-// The background page is asking us to find a microformat on the page.
-if (window == top) {
-  chrome.extension.onRequest.addListener(function(req, sender, sendResponse) {
-    sendResponse(discover_microformats());
-  });
-}
+discoverMicroformats();
 
-var discover_microformats = function() {
+function discoverMicroformats() {
 	var hcards = HCard.discover();
   var hcalendars = HCalendar.discover();
   var hreviews = HReview.discover();
@@ -13,4 +8,17 @@ var discover_microformats = function() {
   console.log('hcards: ' + hcards.length);
   console.log('hcalendars: ' + hcalendars.length);
   console.log('hreviews: ' + hreviews.length);
-};
+
+  for(i = 0; i < hcards.length; i++) {
+    hcards[i] = JSON.stringify(hcards[i]);
+  }
+  for(i = 0; i < hcalendars.length; i++) {
+    hcalendars[i] = JSON.stringify(hcalendars[i]);
+  }
+  for(i = 0; i < hreviews.length; i++) {
+    hreviews[i] = JSON.stringify(hreviews[i]);
+  }
+
+  chrome.extension.sendRequest({hcards: hcards, hcalendars: hcalendars, hreviews: hreviews});
+}
+

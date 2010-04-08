@@ -3,11 +3,10 @@
   <script type="text/javascript" src="jquery.min.js"></script> 
   <script>
     chrome.tabs.getSelected(null, function(tab) {
-      var hcards = chrome.extension.getBackgroundPage().hcards;
-      var hcalendars = chrome.extension.getBackgroundPage().hcalendars;
-      var hreviews = chrome.extension.getBackgroundPage().hreviews;
-    });
-    
+      var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
+      var hcalendars = chrome.extension.getBackgroundPage().hcalendars[tab.id];
+      var hreviews = chrome.extension.getBackgroundPage().hreviews[tab.id];
+    });    
   </script>
 </head>
 <style>
@@ -16,6 +15,7 @@
 </style>
 <body>
   <div id="microformats">
+    
   </div>
 </body>
 </html>
