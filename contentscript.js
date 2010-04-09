@@ -9,6 +9,8 @@ function discoverMicroformats() {
   console.log('hcalendars: ' + hcalendars.length);
   console.log('hreviews: ' + hreviews.length);
 
+  // convert objects into JSON so we can
+  // pass the arrays to the background page
   for(i = 0; i < hcards.length; i++) {
     hcards[i] = JSON.stringify(hcards[i]);
   }

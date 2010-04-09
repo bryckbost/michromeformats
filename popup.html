@@ -4,10 +4,12 @@
   <script>
   
     chrome.tabs.getSelected(null, function(tab) {
+      // get the microformats from the current tab
       var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
       var hcalendars = chrome.extension.getBackgroundPage().hcalendars[tab.id];
       var hreviews = chrome.extension.getBackgroundPage().hreviews[tab.id];
       
+      // let's put these suckers on the page!
       jQuery.each(hcards, function(i, val) {
         $("#hcards").append('<li>' + hcards[i]["fn"] + '</li>');
       });
