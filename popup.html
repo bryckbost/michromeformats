@@ -11,50 +11,37 @@
       
       // let's put these suckers on the page!
       jQuery.each(hcards, function(i, val) {
-        $("#hcards").append('<li>' + hcards[i]["fn"] + '</li>');
+        $("#hcards").append('<li class="hcard"><div class="download"><img src="images/hcard_download.png" title="Download this hCard"></div><div class="details"><h1>' + hcards[i]["fn"] + '</h1><p>' + hcards[i]["url"] + '</p></div></li>');
       });
       jQuery.each(hcalendars, function(i, val) {
-        $("#hcalendars").append('<li>' + hcalendars[i]["summary"] + '</li>');
+        $("#hcalendars").append('<li class="hcalendar"><div class="download"><img src="images/icon-hcalendar-download.png" title="Download this hCalendar"></div><div class="details"><h1>' + hcalendars[i]["summary"] + '</h1><p>' + hcalendars[i]["dtstart"] + '</p></div></li>');
       });
       jQuery.each(hreviews, function(i, val) {
-        $("#hreviews").append('<li>' + hreviews[i]["summary"] + '</li>');
+        $("#hreviews").append('<li class="hreview"><div class="download"><img src="images/icon-hreview.png"></div><div class="details"><h1>' + hreviews[i]["item"]["fn"] + '</h1><p>' + hreviews[i]["summary"] + '</p></div></li>');
       });
     });
           
   </script>
   
   <style>
-    body { margin: 0; padding: 0; font-family: Helvetica, sans-serif; color: #2a2a2a;}
-    #microformats { width: 350px; margin: 30px 10px 0 -30px; }
-    #microformats ul { list-style-type: none;}
+    body { margin: 0; padding: 0; width: 380px; font-family: Helvetica, sans-serif; color: #2a2a2a; }
+    #microformats { margin-top: 15px;}
+    ul { list-style-type: none; padding: 0;}
     h1 { font-size: 18px; font-weight: bold; line-height: 23px; margin-top: -5px;}
     p { font-size: 12px; color: #3e3e3e;}
-    .hcard { overflow: hidden; border-bottom: 1px solid #c2c2c2; margin-top: 10px;}
+    .hcard, .hcalendar, .hreview { overflow: hidden; border-bottom: 1px solid #c2c2c2; margin-top:10px;}
     .download { float: left; margin-right: 10px;}
     .details { float: left;}
   </style>
 </head>
 <body>
   <div id="microformats">
+    <h1>The following microformats were found:</h1>
     <ul id="hcards">
-      <li class="hcard">
-        <div class="download"><img src="images/hcard_download.png" title="Download this hCard"></div>
-        <div class="details">
-          <h1>Brian Ryckbost</h1>
-          
-          <p>brian@collectiveidea.com<br>http://ryckbost.com</p>
-        </div>
-      </li>
+
     </ul>
     <ul id="hcalendars">
-      <li class="hcard">
-        <div class="download"><img src="images/icon-hcalendar-download.png" title="Download this hCalendar"></div>
-        <div class="details">
-          <h1>City Flats Hotel</h1>
-          
-          <p>Holland, Michigan<br>Tue May 20, 2010</p>
-        </div>
-      </li>    
+
     </ul>
     <ul id="hreviews">
     
