@@ -3,17 +3,17 @@
   "version": "0.0.1",
   "description": "Displays any microformats on the page. Supports HCard, HEvent and HReview.",
   "page_action": {
-    "default_icon": "microformats-logo-16.png",
+    "default_icon": "images/microformats-logo-16.png",
     "default_title" : "This page has a microformat. Hooray!",
     "popup": "popup.html"
   },
   "content_scripts": [ {
-      "js": [ "jquery.min.js", "microformat.js", "hcard.js", "hcalendar.js", "hreview.js", "contentscript.js" ],
+      "js": [ "javascripts/jquery.min.js", "javascripts/microformat.js", "javascripts/hcard.js", "javascripts/hcalendar.js", "javascripts/hreview.js", "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {
-    "48" : "microformats-logo-48.png",
-    "128" : "microformats-logo-128.png"
+    "48" : "images/microformats-logo-48.png",
+    "128" : "images/microformats-logo-128.png"
   },
   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
   "background_page": "background.html"

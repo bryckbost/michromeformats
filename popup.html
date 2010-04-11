@@ -1,6 +1,6 @@
 <html>
 <head>
-  <script type="text/javascript" src="jquery.min.js"></script> 
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script> 
   <script>
   
     chrome.tabs.getSelected(null, function(tab) {
@@ -24,17 +24,37 @@
   </script>
   
   <style>
-    body { margin: 0; padding: 0; }
-    #microformats { width: 360px; height: 480px;}
+    body { margin: 0; padding: 0; font-family: Helvetica, sans-serif; color: #2a2a2a;}
+    #microformats { width: 350px; margin: 30px 10px 0 -30px; }
+    #microformats ul { list-style-type: none;}
+    h1 { font-size: 18px; font-weight: bold; line-height: 23px; margin-top: -5px;}
+    p { font-size: 12px; color: #3e3e3e;}
+    .hcard { overflow: hidden; border-bottom: 1px solid #c2c2c2; margin-top: 10px;}
+    .download { float: left; margin-right: 10px;}
+    .details { float: left;}
   </style>
 </head>
 <body>
   <div id="microformats">
     <ul id="hcards">
-    
+      <li class="hcard">
+        <div class="download"><img src="images/hcard_download.png" title="Download this hCard"></div>
+        <div class="details">
+          <h1>Brian Ryckbost</h1>
+          
+          <p>brian@collectiveidea.com<br>http://ryckbost.com</p>
+        </div>
+      </li>
     </ul>
     <ul id="hcalendars">
-    
+      <li class="hcard">
+        <div class="download"><img src="images/icon-hcalendar-download.png" title="Download this hCalendar"></div>
+        <div class="details">
+          <h1>City Flats Hotel</h1>
+          
+          <p>Holland, Michigan<br>Tue May 20, 2010</p>
+        </div>
+      </li>    
     </ul>
     <ul id="hreviews">
     
