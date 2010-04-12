@@ -1,0 +1,13 @@
+h1. Michromeformats
+
+h2. What is it?
+
+Displays any microformats on the page. Supports hCard, hCalendar and hReview.
+
+h3. What are microformats?
+
+Designed for humans first and machines second, microformats are a set of simple, open data formats built upon existing and widely adopted standards. "Learn more about":http://microformats.org/about
+
+h2. Features
+
+* Supports hCard, hCalendar and hReview formats
