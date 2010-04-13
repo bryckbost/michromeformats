@@ -12,7 +12,9 @@
       // let's put these suckers on the page!
       jQuery.each(hcards, function(i, val) {
         // What other data should we display?
-        $("#hcards").append('<li class="hcard"><div class="download"><img src="images/hcard_download.png" title="Download this hCard"></div><div class="details"><h1>' + hcards[i]["fn"] + '</h1></div></li>');
+        if (hcards[i]["fn"]) {
+          $("#hcards").append('<li class="hcard"><div class="download"><img src="images/hcard_download.png" title="Download this hCard"></div><div class="details"><h1>' + hcards[i]["fn"] + '</h1></div></li>');
+        }
       });
       jQuery.each(hcalendars, function(i, val) {
         $("#hcalendars").append('<li class="hcalendar"><div class="download"><img src="images/icon-hcalendar-download.png" title="Download this hCalendar"></div><div class="details"><h1>' + hcalendars[i]["summary"] + '</h1><p>' + new Date(hcalendars[i]["dtstart"].split('T')[0]).toDateString() + '</p></div></li>');
