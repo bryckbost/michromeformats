@@ -4,9 +4,11 @@ h2. What is it?
 
 Displays any microformats on the page. Supports hCard, hCalendar and hReview.
 
+Inspiration came from Remy Sharp's awesome "Microformats Bookmarklet":leftlogic.com/lounge/articles/microformats_bookmarklet, which got its inspiration from "Jon Hick's":http://www.hicksdesign.co.uk/journal/a-proposal-for-a-safari-microformats-plugin proposed Safari plugin.
+
 h3. What are microformats?
 
-Designed for humans first and machines second, microformats are a set of simple, open data formats built upon existing and widely adopted standards. "Learn more about":http://microformats.org/about
+Designed for humans first and machines second, microformats are a set of simple, open data formats built upon existing and widely adopted standards. "Learn more about microformats":http://microformats.org/about
 
 h2. Features
 
