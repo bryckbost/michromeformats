@@ -1,10 +1,10 @@
 {
   "name": "Michromeformats",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Displays any microformats on the page. Supports hCard, hCalendar and hReview.",
   "page_action": {
     "default_icon": "images/microformats-logo-16.png",
-    "default_title" : "This page has a microformat. Hooray!",
+    "default_title" : "Click to view the microformats...",
     "popup": "popup.html"
   },
   "content_scripts": [ {
