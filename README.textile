@@ -13,3 +13,9 @@ Designed for humans first and machines second, microformats are a set of simple,
 h2. Features
 
 * Supports hCard, hCalendar and hReview formats
+* It's prettier than what else is out there
+
+h3. Coming soon
+
+* Downloading/Exporting data
+* Display more information in popup
