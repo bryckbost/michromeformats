@@ -1,6 +1,7 @@
 <html>
 <head>
   <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/PerfectTime.js"></script>
   <script>
   
   // ISO8601 Date extension
@@ -65,12 +66,12 @@
       });
       
       $.each(hcalendars, function(j, hcalendar) {
-        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><a href="#" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li><strong>Start:</strong> '+ Date.parseISO8601(hcalendar.dtstart).toLocaleString() +'</li></ul></div></li>');
+        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><a href="#" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li><strong>Start:</strong> '+ $.fn.strftime(Date.parseISO8601(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
         
         $("#hcalendars").append(hcalHtml);
                 
         if (hcalendar.dtend)
-          $('#hcal-'+j+' ul').append('<li><strong>End:</strong> '+ Date.parseISO8601(hcalendar.dtend).toLocaleString() +'</li>');
+          $('#hcal-'+j+' ul').append('<li><strong>End:</strong> '+ $.fn.strftime(Date.parseISO8601(hcalendar.dtend), '%b %d, %Y at %i:%M%P') +'</li>');
         
       });
       
@@ -90,10 +91,11 @@
     h1 { font-size: 18px; font-weight: bold; line-height: 23px; margin-top: -4px;}
     a { color: #9DBD53;}
     a:hover { color: #5F7B1F;}
-    .hcard, .hcalendar, .hreview { overflow: hidden; border-bottom: 1px solid #c2c2c2; margin-top:10px;}
+    .hcard, .hcalendar, .hreview { overflow: hidden; border-bottom: 1px solid #c2c2c2; margin: 10px 0;}
     .download { float: left; margin-left: 5px;}
     .details { margin-left: 44px; padding-right: 20px;}
-    .details ul li, p { font-size: 12px; color: #3e3e3e; margin-bottom: 10px;}
+    .details ul li { font-size: 12px; color: #3e3e3e; margin-bottom: 5px;}
+    p { font-size: 12px; color: #3e3e3e;}
   </style>
 </head>
 <body>
