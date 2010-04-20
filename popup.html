@@ -1,7 +1,44 @@
 <html>
 <head>
-  <script type="text/javascript" src="javascripts/jquery.min.js"></script> 
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
   <script>
+  
+  // ISO8601 Date extension
+  Date.ISO8601PartMap = {
+    Year : 1,
+    Month : 2,
+    Date : 3,
+    Hours : 4,
+    Minutes : 5,
+    Seconds : 6,
+    Milliseconds: 7
+  }
+
+  Date.matchISO8601 = function(text) { 
+    return text.match(/^(\d{4})(?:-?(\d{2})(?:-?(\d{2})(?:T(\d{2}):?(\d{2})(?::?(\d{2})(?:[.]?(\d+))?)?(?:Z|(?:([+-])(\d{2}):?(\d{2}))?)?)?)?)?$/);
+  }
+
+  Date.parseISO8601 = function(text) {
+    var dateParts = this.matchISO8601(text);
+    if (dateParts) {
+      var date = new Date, parts, offset = 0;
+      for (var prop in this.ISO8601PartMap) {
+        if (part = dateParts[this.ISO8601PartMap[prop]]) 
+          date['set' + prop]((prop == 'Month') ? parseInt(part)-1 : parseInt(part));
+          else date['set' + prop]((prop == 'Date') ? 1 : 0);
+      }
+
+      if (dateParts[11]) {
+        offset = (parseInt(dateParts[14]) * 60) + parseInt(dateParts[15]);
+        offset *= ((parseInt[13] == '-') ? 1 : -1);
+      }
+
+      offset -= date.getTimezoneOffset();
+      date.setTime(date.getTime() + (offset * 60 * 1000)); 
+
+      return date;
+    }
+  }
   
     chrome.tabs.getSelected(null, function(tab) {
       // get the microformats from the current tab
@@ -12,7 +49,7 @@
       // let's put these suckers on the page!
       $.each(hcards, function(i, hcard) {
         // What other data should we display?
-        var html = $('<li class="hcard" id="'+i+'"><div class="download"><a href="#" title="Download this hCard"><img src="images/hcard_download.png"></a></div><div class="details"><h1>' + hcard.fn + '</h1><ul></ul></div></li>');
+        var html = $('<li class="hcard" id="hcard-'+i+'"><div class="download"><a href="#" title="Download this hCard"><img src="images/hcard_download.png"></a></div><div class="details"><h1>' + hcard.fn + '</h1><ul></ul></div></li>');
         
         // fn is required so only output
         // the vcard if it's "valid"
@@ -20,19 +57,25 @@
           $("#hcards").append(html);
           
           if (hcard.email)
-            $('#'+i+' ul').append('<li>'+ hcard.email +'</li>');
+            $('#hcard-'+i+' ul').append('<li>'+ hcard.email +'</li>');
             
           if (hcard.url)
-            $('#'+i+' ul').append('<li><a href="'+ hcard.url[0] +'" target="_blank">'+ hcard.url[0]+ '</a></li>');
+            $('#hcard-'+i+' ul').append('<li><a href="'+ hcard.url[0] +'" target="_blank">'+ hcard.url[0]+ '</a></li>');
         }
       });
       
-      jQuery.each(hcalendars, function(j, hcalendar) {
-        $("#hcalendars").append('<li class="hcalendar" id="'+j+'"><div class="download"><a href="#" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><p>' + new Date(hcalendar.dtstart.split('T')[0]).toDateString() + '</p></div></li>');
+      $.each(hcalendars, function(j, hcalendar) {
+        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><a href="#" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li><strong>Start:</strong> '+ Date.parseISO8601(hcalendar.dtstart).toLocaleString() +'</li></ul></div></li>');
+        
+        $("#hcalendars").append(hcalHtml);
+                
+        if (hcalendar.dtend)
+          $('#hcal-'+j+' ul').append('<li><strong>End:</strong> '+ Date.parseISO8601(hcalendar.dtend).toLocaleString() +'</li>');
+        
       });
       
-      jQuery.each(hreviews, function(k, hreview) {
-        $("#hreviews").append('<li class="hreview" id="'+k+'"><div class="download"><img src="images/icon-hreview.png"></div><div class="details"><h1>' + hreview.item.fn + '</h1><p>' + hreview.summary + '</p></div></li>');
+      $.each(hreviews, function(k, hreview) {
+        $("#hreviews").append('<li class="hreview" id="hreview-'+k+'"><div class="download"><img src="images/icon-hreview.png"></div><div class="details"><h1>' + hreview.item.fn + '</h1><p>' + hreview.summary + '</p></div></li>');
       });
     });
   </script>
