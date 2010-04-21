@@ -18,4 +18,3 @@ h2. Features
 h3. Coming soon
 
 * Downloading/Exporting data
-* Display more information in popup
