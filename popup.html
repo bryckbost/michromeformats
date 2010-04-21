@@ -3,44 +3,6 @@
   <script type="text/javascript" src="javascripts/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/PerfectTime.js"></script>
   <script>
-  
-  // ISO8601 Date extension
-  Date.ISO8601PartMap = {
-    Year : 1,
-    Month : 2,
-    Date : 3,
-    Hours : 4,
-    Minutes : 5,
-    Seconds : 6,
-    Milliseconds: 7
-  }
-
-  Date.matchISO8601 = function(text) { 
-    return text.match(/^(\d{4})(?:-?(\d{2})(?:-?(\d{2})(?:T(\d{2}):?(\d{2})(?::?(\d{2})(?:[.]?(\d+))?)?(?:Z|(?:([+-])(\d{2}):?(\d{2}))?)?)?)?)?$/);
-  }
-
-  Date.parseISO8601 = function(text) {
-    var dateParts = this.matchISO8601(text);
-    if (dateParts) {
-      var date = new Date, parts, offset = 0;
-      for (var prop in this.ISO8601PartMap) {
-        if (part = dateParts[this.ISO8601PartMap[prop]]) 
-          date['set' + prop]((prop == 'Month') ? parseInt(part)-1 : parseInt(part));
-          else date['set' + prop]((prop == 'Date') ? 1 : 0);
-      }
-
-      if (dateParts[11]) {
-        offset = (parseInt(dateParts[14]) * 60) + parseInt(dateParts[15]);
-        offset *= ((parseInt[13] == '-') ? 1 : -1);
-      }
-
-      offset -= date.getTimezoneOffset();
-      date.setTime(date.getTime() + (offset * 60 * 1000)); 
-
-      return date;
-    }
-  }
-  
     chrome.tabs.getSelected(null, function(tab) {
       // get the microformats from the current tab
       var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
@@ -66,13 +28,12 @@
       });
       
       $.each(hcalendars, function(j, hcalendar) {
-        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><a href="#" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li><strong>Start:</strong> '+ $.fn.strftime(Date.parseISO8601(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
+        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><a href="#" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li><strong>Start:</strong> '+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
         
         $("#hcalendars").append(hcalHtml);
                 
         if (hcalendar.dtend)
-          $('#hcal-'+j+' ul').append('<li><strong>End:</strong> '+ $.fn.strftime(Date.parseISO8601(hcalendar.dtend), '%b %d, %Y at %i:%M%P') +'</li>');
-        
+          $('#hcal-'+j+' ul').append('<li><strong>End:</strong> '+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P') +'</li>');
       });
       
       $.each(hreviews, function(k, hreview) {
