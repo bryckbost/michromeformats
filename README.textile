@@ -10,7 +10,7 @@ h3. What are microformats?
 
 Designed for humans first and machines second, microformats are a set of simple, open data formats built upon existing and widely adopted standards. "Learn more about microformats":http://microformats.org/about
 
-h2. Features
+h2. Benefits
 
 * Supports hCard, hCalendar and hReview formats
 * It's prettier than what else is out there
@@ -19,3 +19,11 @@ h3. Coming soon
 
 * Downloading/Exporting data
 * Better handling of nested hCards
+* Firefox's Operator like features? I haven't looked into Operator much, but there's some good stuff there.
+
+h3. Wild and crazy ideas
+
+* HTML5 database storage for a microformat address book
+* Integrate with other web services, for example:
+** add an hCard to your Google contacts
+** add an hCalendar event to your Google calendar
