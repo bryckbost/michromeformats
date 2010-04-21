@@ -18,3 +18,4 @@ h2. Features
 h3. Coming soon
 
 * Downloading/Exporting data
+* Better handling of nested hCards

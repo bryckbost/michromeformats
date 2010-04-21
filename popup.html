@@ -36,8 +36,22 @@
           $('#hcal-'+j+' ul').append('<li><strong>End:</strong> '+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P') +'</li>');
       });
       
-      $.each(hreviews, function(k, hreview) {
-        $("#hreviews").append('<li class="hreview" id="hreview-'+k+'"><div class="download"><img src="images/icon-hreview.png"></div><div class="details"><h1>' + hreview.item.fn + '</h1><p>' + hreview.summary + '</p></div></li>');
+      $.each(hreviews, function(k, hreview) {      
+        var hreviewHTML = $('<li class="hreview" id="hreview-'+k+'"><div class="download"><img src="images/icon-hreview.png"></div><div class="details"><h1>' + (hreview.item.fn || hreview.item.url || hreview.item.photo_url) + '</h1><ul></ul></div></li>');
+                
+        $("#hreviews").append(hreviewHTML);
+        
+        if (hreview.summary)
+          $('#hreview-'+k+' ul').append('<li>' + hreview.summary + '</li>');
+          
+        if (hreview.description)
+          $('#hreview-'+k+' ul').append('<li>'+ hreview.description +'</li>');
+
+        if (hreview.dtreviewed)
+          $('#hreview-'+k+' ul').append('<li><strong>Reviewed: </strong>'+ hreview.dtreviewed +'</li>');
+
+        if (hreview.rating)
+          $('#hreview-'+k+' ul').append('<li><strong>Rating: </strong>'+ hreview.rating +'</li>');
       });
     });
   </script>
