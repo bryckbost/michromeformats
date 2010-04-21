@@ -12,8 +12,8 @@
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {
-    "48" : "images/microformats_logo-48.png",
-    "128" : "images/microformats_logo.png"
+    "48" : "images/michromeformat_logo-48.png",
+    "128" : "images/michromeformat_logo.png"
   },
   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
   "background_page": "background.html"
