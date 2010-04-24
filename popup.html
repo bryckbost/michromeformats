@@ -27,8 +27,8 @@
         }
       });
       
-      $.each(hcalendars, function(j, hcalendar) {
-        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><a href="#" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li><strong>Start:</strong> '+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
+      $.each(hcalendars, function(j, hcalendar) {        
+        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download this hCalendar"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li><strong>Start:</strong> '+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
         
         $("#hcalendars").append(hcalHtml);
                 
