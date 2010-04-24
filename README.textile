@@ -13,11 +13,11 @@ Designed for humans first and machines second, microformats are a set of simple,
 h2. Benefits
 
 * Supports hCard, hCalendar and hReview formats
-* It's prettier than what else is out there
+* Download/Export data to *.vcf for cards or *.ics for events
+* It's prettier than what else is out there (and getting even more pretty soon)
 
 h3. Coming soon
 
-* Downloading/Exporting data
 * Better handling of nested hCards
 * Firefox's Operator like features? I haven't looked into Operator much, but there's some good stuff there.
 
