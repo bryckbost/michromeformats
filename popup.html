@@ -10,9 +10,9 @@
       var hreviews = chrome.extension.getBackgroundPage().hreviews[tab.id];
       
       // let's put these suckers on the page!
-      $.each(hcards, function(i, hcard) {
+      $.each(hcards, function(i, hcard) {        
         // What other data should we display?
-        var html = $('<li class="hcard" id="hcard-'+i+'"><div class="download"><a href="#" title="Download this hCard"><img src="images/hcard_download.png"></a></div><div class="details"><h1>' + hcard.fn + '</h1><ul></ul></div></li>');
+        var html = $('<li class="hcard" id="hcard-'+i+'"><div class="download"><a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download this hCard"><img src="images/hcard_download.png"></a></div><div class="details"><h1>' + hcard.fn + '</h1><ul></ul></div></li>');
         
         // fn is required so only output
         // the vcard if it's "valid"
