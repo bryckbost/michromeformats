@@ -12,7 +12,7 @@
       // let's put these suckers on the page!
       $.each(hcards, function(i, hcard) {        
         // What other data should we display?
-        var html = $('<li class="hcard" id="hcard-'+i+'"><div class="download"><img src="images/vcf_48.png"><br><a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download this hCard" target="_blank"><img src="images/hcard_download.png"></a></div><div class="details"><h1>' + hcard.fn + '</h1><ul></ul></div></li>');
+        var html = $('<li class="hcard" id="hcard-'+i+'"><div class="download"><img src="images/vcf_48.png"></div><div class="details"><h1>' + hcard.fn + '<a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download this hCard" target="_blank"><img src="images/hcard_download.png"></a></h1><ul></ul></div></li>');
         
         // fn is required so only output
         // the vcard if it's "valid"
@@ -28,7 +28,7 @@
       });
       
       $.each(hcalendars, function(j, hcalendar) {        
-        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><img src="images/calendargray.png"><br><a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download this hCalendar" target="_blank"><img src="images/icon-hcalendar-download.png"></a></div><div class="details"><h1>' + hcalendar.summary + '</h1><ul><li>'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
+        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><img src="images/calendargray.png"></div><div class="details"><h1>' + hcalendar.summary + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download this hCalendar" target="_blank"><img src="images/icon-hcalendar-download.png"></a></h1><ul><li>'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
         
         $("#hcalendars").append(hcalHtml);
                 
@@ -101,6 +101,9 @@
     -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.2);
     -moz-box-shadow: 0 2px 2px rgba(0,0,0,.2);
     box-shadow: 0 2px 2px rgba(0,0,0,.2);
+  }
+  .hcard h1 a, .hcalendar h1 a {
+    float: right;
   }
   .download {
     float: left;
