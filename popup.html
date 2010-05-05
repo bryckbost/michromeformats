@@ -91,7 +91,6 @@
     margin: 20px 0;
     padding: 10px 15px 5px 15px;
     overflow: hidden;
-    min-height: 75px;
     border: 1px solid #b6b6b6;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -101,6 +100,11 @@
     -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.2);
     -moz-box-shadow: 0 2px 2px rgba(0,0,0,.2);
     box-shadow: 0 2px 2px rgba(0,0,0,.2);
+  }
+  .hcard:hover, .hcalendar:hover, .hreview:hover {
+    border: 1px solid #aaa;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d7d7d7));
+    background: -moz-linear-gradient(top, #fff, #e7e7e7);
   }
   .hcard h1 a, .hcalendar h1 a {
     float: right;
