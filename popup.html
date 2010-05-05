@@ -20,7 +20,7 @@
           $("#hcards").append(html);
           
           if (hcard.email)
-            $('#hcard-'+i+' ul').append('<li>'+ hcard.email +'</li>');
+            $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ hcard.email[0] +'">'+ hcard.email[0] +'</li>');
             
           if (hcard.url)
             $('#hcard-'+i+' ul').append('<li><a href="'+ hcard.url[0] +'" target="_blank">'+ hcard.url[0]+ '</a></li>');
@@ -102,12 +102,6 @@
     -moz-box-shadow: 0 2px 2px rgba(0,0,0,.2);
     box-shadow: 0 2px 2px rgba(0,0,0,.2);
   }
-  .hcard:hover, .hcalendar:hover, .hreview:hover {
-    color: #3D600B;
-    border: 1px solid #9fcb2e;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#deeac9));
-    background: -moz-linear-gradient(top, #fff, #deeac9);
-  }
   .download {
     float: left;
   }
@@ -116,9 +110,16 @@
   }
   .details ul li {
     font-size: 12px;
+    margin-bottom: 7px;
+  }
+  .details h1 {
+    margin-bottom: 7px;
   }
   p {
     font-size: 12px;
+  }
+  a {
+    color: #3b3b3b;
   }
   </style>
 </head>
