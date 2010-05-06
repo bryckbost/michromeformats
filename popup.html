@@ -28,12 +28,12 @@
       });
       
       $.each(hcalendars, function(j, hcalendar) {        
-        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><img src="images/calendargray.png"></div><div class="details"><h1>' + hcalendar.summary + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download this hCalendar" target="_blank"><img src="images/icon-hcalendar-download.png"></a></h1><ul><li>'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
+        var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><img src="images/calendargray.png"><span class="dtstart-month">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b') +'</span><span class="dtstart-day">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%d') +'</span></div><div class="details"><h1>' + hcalendar.summary + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download this hCalendar" target="_blank"><img src="images/icon-hcalendar-download.png"></a></h1><ul><li class="start">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
         
         $("#hcalendars").append(hcalHtml);
                 
         if (hcalendar.dtend)
-          $('#hcal-'+j+' ul').append('<li>'+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P') +'</li>');
+          $('#hcal-'+j+' ul .start').append(' — '+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P'));
       });
       
       $.each(hreviews, function(k, hreview) {      
@@ -60,9 +60,13 @@
   body {
     margin: 15px 10px;
     padding: 0;
-    width: 400px;
+    width: 420px;
     font-family: Helvetica, sans-serif;
     color: #3b3b3b;
+    overflow-x: hidden;
+  }
+  #microformats {
+    width: 400px;
   }
   #header {
     overflow: hidden;
@@ -93,24 +97,41 @@
     overflow: hidden;
     border: 1px solid #b6b6b6;
     -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
     border-radius: 10px;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e7e7e7));
-    background: -moz-linear-gradient(top, #fff, #e7e7e7);
     -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.2);
-    -moz-box-shadow: 0 2px 2px rgba(0,0,0,.2);
     box-shadow: 0 2px 2px rgba(0,0,0,.2);
   }
   .hcard:hover, .hcalendar:hover, .hreview:hover {
     border: 1px solid #aaa;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d7d7d7));
-    background: -moz-linear-gradient(top, #fff, #e7e7e7);
   }
   .hcard h1 a, .hcalendar h1 a {
     float: right;
   }
   .download {
     float: left;
+  }
+  .download:hover {
+    cursor: pointer;
+  }
+  .hcalendar .download {
+    position: relative;
+  }
+  .hcalendar .download .dtstart-month {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    top: 6px;
+    left: 13px;
+  }
+  .hcalendar .download .dtstart-day {
+    font-size: 20px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 21px;
+    left: 13px;
   }
   .details {
     margin-left: 58px;
