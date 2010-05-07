@@ -14,12 +14,12 @@ h2. Benefits
 
 * Supports hCard, hCalendar and hReview formats
 * Download/Export data to *.vcf for cards or *.ics for events
-* It's prettier than what else is out there (and getting even more pretty soon)
+* Links to view addresses on Google Maps
 
 h3. Coming soon
 
 * Better handling of nested hCards
-* Firefox's Operator like features? I haven't looked into Operator much, but there's some good stuff there.
+* Firefox's Operator-like features?
 
 h3. Wild and crazy ideas
 
@@ -27,3 +27,7 @@ h3. Wild and crazy ideas
 * Integrate with other web services, for example:
 ** add an hCard to your Google contacts
 ** add an hCalendar event to your Google calendar
+
+h2. Thank You
+
+Some of the icons come from "Matthias Pfefferle's Microformat icon set":http://notizblog.org/projects/microformats-icons/. This extension wouldn't be *pretty* without these awesome little icons.
