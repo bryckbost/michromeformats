@@ -14,8 +14,7 @@
         // What other data should we display?
         var html = $('<li class="hcard" id="hcard-'+i+'"><div class="download"><img src="images/vcf_48.png"></div><div class="details"><h1>' + hcard.fn + '<a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download this hCard" target="_blank" class="vcard"><img src="images/hcard_download.png"></a></h1><ul></ul></div></li>');
         
-        // fn is required so only output
-        // the vcard if it's "valid"
+        // fn is required so only output the vcard if it's "valid"
         if (hcard.fn) {
           $("#hcards").append(html);
           
@@ -36,7 +35,7 @@
           $('#hcal-'+j+' ul .start').append(' — '+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P'));
           
         if (hcalendar.location)
-          $('#hcal-'+j+' ul').append('<li>' + hcalendar.location + '</li>');
+          $('#hcal-'+j+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(hcalendar.location)+'" target="_blank" title="View on Google Maps">'+hcalendar.location+'</a></li>');
       });
       
       $.each(hreviews, function(k, hreview) {      
