@@ -34,6 +34,9 @@
                 
         if (hcalendar.dtend)
           $('#hcal-'+j+' ul .start').append(' — '+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P'));
+          
+        if (hcalendar.location)
+          $('#hcal-'+j+' ul').append('<li>' + hcalendar.location + '</li>');
       });
       
       $.each(hreviews, function(k, hreview) {      
