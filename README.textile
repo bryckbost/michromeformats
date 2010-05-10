@@ -20,6 +20,10 @@ h3. Coming soon
 
 * Better handling of nested hCards
 * Firefox's Operator-like features?
+* Other format support:
+** hProduct
+** hRecipe
+** hResume
 
 h3. Wild and crazy ideas
 
