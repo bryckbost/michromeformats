@@ -1,4 +1,3 @@
-
 if(!Array.prototype.forEach){Array.prototype.forEach=function(func,scope){scope=scope||this;for(var i=0,l=this.length;i<l;i++)
 func.call(scope,this[i],i,this);}}
 if(typeof Prototype!='undefined'||!Array.prototype.map){Array.prototype.map=function(func,scope){scope=scope||this;var list=[];for(var i=0,l=this.length;i<l;i++)

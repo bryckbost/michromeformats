@@ -1,4 +1,3 @@
-
 $(function(){var _defaultFormat='%d %b %Y at %H:%M';$.fn.perfectTime=function(format){return this.each(function(){var fmt=(format)?format:_defaultFormat;var newDate=$.fn.parseISO($(this).attr('title'));$(this).html($.fn.strftime(newDate,fmt));});}
 var isoRegEx=/(\d{4})(-?(\d{2})(-?(\d{2})((T|\s)(\d{2}):?(\d{2})(:?(\d{2})([.]?(\d+))?)?(Z|(([+-])(\d{2}):?(\d{2}))?)?)?)?)?/;$.fn.parseISO=function(isoString){var d=isoString.match(isoRegEx);var theDate=new Date(d[1],0,1);if(d[3]){theDate.setMonth(d[3]-1);}
 if(d[5]){theDate.setDate(d[5]);}

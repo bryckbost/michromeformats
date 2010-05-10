@@ -1,4 +1,3 @@
-
 var HCard=Microformat.define('vcard',{one:['bday','tz','sort-string','uid','class',{'n':{one:['family-name','given-name','additional-name'],many:['honorific-prefix','honorific-suffix']},'geo':function(node){var m;if((node.nodeName.toLowerCase()=='abbr')&&(m=node.title.match(/^([\-\d\.]+);([\-\d\.]+)$/))){return{latitude:m[1],longitude:m[2]};}
 return this._extractData(node,{one:['latitude','longitude']});},'fn':function(node,data){var m,fn=this._extractData(node,'simple');if(m=fn.match(/^(\w+) (\w+)$/)){data.n=data.n||{};data.n.givenName=data.n.givenName||m[1];data.n.familyName=data.n.familyName||m[2];}
 if(m=fn.match(/^(\w+),? (\w+)\.?$/)){data.n=data.n||{};data.n.givenName=data.n.givenName||m[2];data.n.familyName=data.n.familyName||m[1];}
