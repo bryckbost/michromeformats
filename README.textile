@@ -2,7 +2,7 @@ h1. Michromeformats
 
 h2. What is it?
 
-Displays any microformats on the page. Supports hCard, hCalendar and hReview.
+Displays any microformats on the page. Supports hCard, hCalendar, hReview and hRecipe.
 
 Inspiration came from Remy Sharp's awesome "Microformats Bookmarklet":leftlogic.com/lounge/articles/microformats_bookmarklet, which got its inspiration from "Jon Hick's":http://www.hicksdesign.co.uk/journal/a-proposal-for-a-safari-microformats-plugin proposed Safari plugin.
 
@@ -12,7 +12,7 @@ Designed for humans first and machines second, microformats are a set of simple,
 
 h2. Benefits
 
-* Supports hCard, hCalendar and hReview formats
+* Supports hCard, hCalendar, hReview and hRecipe formats
 * Download/Export data to *.vcf for cards or *.ics for events
 * Links to view addresses on Google Maps
 
@@ -22,7 +22,6 @@ h3. Coming soon
 * Firefox's Operator-like features?
 * Other format support:
 ** hProduct
-** hRecipe
 ** hResume
 
 h3. Wild and crazy ideas
@@ -34,4 +33,4 @@ h3. Wild and crazy ideas
 
 h2. Thank You
 
-Some of the icons come from "Matthias Pfefferle's Microformat icon set":http://notizblog.org/projects/microformats-icons/. This extension wouldn't be *pretty* without these awesome little icons.
+Some of the icons come from "Matthias Pfefferle's Microformat icon set":http://notizblog.org/projects/microformats-icons/. This extension wouldn't be *pretty* without these awesome little icons. The recipe icon comes from the MealKeeper set which can be found at "deviantart.com":http://shlyapnikova.deviantart.com/art/Icon-for-MealKeeper-s-soft-162435451

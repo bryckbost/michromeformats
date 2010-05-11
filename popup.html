@@ -67,6 +67,29 @@
         if (hreview.rating)
           $('#hreview-'+k+' ul').append('<li><strong>Rating: </strong>'+ hreview.rating +'</li>');
       });
+      
+      $.each(hrecipes, function(l, hrecipe) {
+        var hrecipeHTML = $('<li class="hrecipe" id="hrecipe-'+l+'"><div class="download"><img src="images/recipe.png"></div><div class="details"><h1>'+ hrecipe.fn +'</h1><ul class="ingredients"><li><strong>Ingredients</strong></li></ul><ul class="other"></ul></div></li>');
+                
+        $("#hrecipes").append(hrecipeHTML);
+        
+        $.each(hrecipe.ingredient, function(m, ingredient) {
+          $('#hrecipe-'+l+' .ingredients').append('<li>'+ ingredient +'</li>');
+        });
+        
+        if (hrecipe.instructions)
+          $('#hrecipe-'+l+' .other').append('<li><strong>Directions</strong></li><li>'+ hrecipe.instructions +'</li>');
+          
+        if (hrecipe.duration)
+          $('#hrecipe-'+l+' .other').append('<li><strong>Total time: </strong>'+ hrecipe.duration[0] +'</li>');
+        
+        if (hrecipe.yield)
+          $('#hrecipe-'+l+' .other').append('<li><strong>Yield: </strong>'+ hrecipe.yield +'</li>');
+          
+        if (hrecipe.author)
+          $('#hrecipe-'+l+' .other').append('<li><strong>From: </strong>'+ hrecipe.author +'</li>');
+          
+      });
     });
   </script>
   
@@ -105,7 +128,7 @@
     font-weight: normal;
     margin: 0;
   }
-  .hcard, .hcalendar, .hreview {
+  .hcard, .hcalendar, .hreview, .hrecipe {
     margin: 20px 0;
     padding: 10px 15px 5px 15px;
     overflow: hidden;
@@ -116,7 +139,7 @@
     -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.2);
     box-shadow: 0 2px 2px rgba(0,0,0,.2);
   }
-  .hcard:hover, .hcalendar:hover, .hreview:hover {
+  .hcard:hover, .hcalendar:hover, .hreview:hover, .hrecipe:hover {
     border: 1px solid #aaa;
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d7d7d7));
   }
@@ -179,6 +202,9 @@
 
     </ul>
     <ul id="hreviews">
+    
+    </ul>
+    <ul id="hrecipes">
     
     </ul>
   </div>
