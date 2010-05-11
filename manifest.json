@@ -1,6 +1,6 @@
 {
   "name": "Michromeformats",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Displays any microformats on the page. Supports hCard, hCalendar and hReview.",
   "page_action": {
     "default_icon": "images/microformats-logo-16.png",
@@ -8,7 +8,7 @@
     "popup": "popup.html"
   },
   "content_scripts": [ {
-      "js": [ "javascripts/jquery.min.js", "javascripts/microformat.js", "javascripts/hcard.js", "javascripts/hcalendar.js", "javascripts/hreview.js", "contentscript.js" ],
+      "js": [ "javascripts/jquery.min.js", "javascripts/microformat.js", "javascripts/hcard.js", "javascripts/hcalendar.js", "javascripts/hreview.js", "javascripts/hrecipe.js", "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {
