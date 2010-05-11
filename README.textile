@@ -22,6 +22,7 @@ h3. Coming soon
 * Firefox's Operator-like features?
 * Other format support:
 ** hProduct
+** hAudio
 ** hResume
 
 h3. Wild and crazy ideas
