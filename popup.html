@@ -3,6 +3,26 @@
   <script type="text/javascript" src="javascripts/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/PerfectTime.js"></script>
   <script>
+    function unique_cards(array) {
+      var a = [], l = array.length;
+      for(var i = 0; i < l; i++) {
+          for(var j = i+1; j < l; j++)
+              if (array[i].fn === array[j].fn) j = ++i;
+          a.push(array[i]);
+      }
+      return a;
+    };
+    
+    function unique_events(array) {
+      var a = [], l = array.length;
+      for(var i = 0; i < l; i++) {
+          for(var j = i+1; j < l; j++)
+              if (array[i].summary === array[j].summary && array[i].dtstart === array[j].dtstart) j = ++i;
+          a.push(array[i]);
+      }
+      return a;
+    };
+
     chrome.tabs.getSelected(null, function(tab) {
       // get the microformats from the current tab
       var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
@@ -11,7 +31,7 @@
       var hrecipes = chrome.extension.getBackgroundPage().hrecipes[tab.id];
       
       // let's put these suckers on the page!
-      $.each(hcards, function(i, hcard) {        
+      $.each(unique_cards(hcards), function(i, hcard) {
         // What other data should we display?
         var html = $('<li class="hcard" id="hcard-'+i+'"><div class="download"><img src="images/vcf_48.png"></div><div class="details"><h1>' + hcard.fn + '<a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download this hCard" target="_blank" class="vcard"><img src="images/hcard_download.png"></a></h1><ul></ul></div></li>');
         
@@ -38,7 +58,7 @@
         }
       });
       
-      $.each(hcalendars, function(j, hcalendar) {        
+      $.each(unique_events(hcalendars), function(j, hcalendar) {
         var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'"><div class="download"><img src="images/calendargray.png"><span class="dtstart-month">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b') +'</span><span class="dtstart-day">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%d') +'</span></div><div class="details"><h1>' + hcalendar.summary + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download this hCalendar" target="_blank" class="vevent"><img src="images/icon-hcalendar-download.png"></a></h1><ul><li class="start">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li></ul></div></li>');
         
         $("#hcalendars").append(hcalHtml);
