@@ -39,11 +39,17 @@
         if (hcard.fn) {
           $("#hcards").append(html);
           
-          if (hcard.email)
-            $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ hcard.email[0] +'">'+ hcard.email[0] +'</li>');
+          if (hcard.email) {
+            $.each(hcard.email, function(index, email) {
+              $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ email +'">'+ email +'</li>');              
+            });
+          }
             
-          if (hcard.url)
-            $('#hcard-'+i+' ul').append('<li><a href="'+ hcard.url[0] +'" target="_blank">'+ hcard.url[0]+ '</a></li>');
+          if (hcard.url) {
+            $.each(hcard.url, function(index, url) {
+              $('#hcard-'+i+' ul').append('<li><a href="'+ url +'" target="_blank">'+ url + '</a></li>');              
+            });
+          }
           
           if (hcard.adr) {
             var street = hcard.adr[0]["street-address"] ? hcard.adr[0]["street-address"] : '';
