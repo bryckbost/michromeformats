@@ -1,10 +1,10 @@
 discoverMicroformats();
 
 function discoverMicroformats() {
-	var hcards = HCard.discover();
-  var hcalendars = HCalendar.discover();
-  var hreviews = HReview.discover();
-  var hrecipes = HRecipe.discover();
+	var hcards      = HCard.discover();
+  var hcalendars  = HCalendar.discover();
+  var hreviews    = HReview.discover();
+  var hrecipes    = HRecipe.discover();
 
   // convert objects into JSON so we can
   // pass the arrays to the background page

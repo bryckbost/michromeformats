@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <script type="text/javascript" src="javascripts/jquery.min.js"></script>
@@ -6,10 +7,10 @@
   <script>
     chrome.tabs.getSelected(null, function(tab) {
       // get the microformats from the current tab
-      var hcards = chrome.extension.getBackgroundPage().hcards[tab.id];
-      var hcalendars = chrome.extension.getBackgroundPage().hcalendars[tab.id];
-      var hreviews = chrome.extension.getBackgroundPage().hreviews[tab.id];
-      var hrecipes = chrome.extension.getBackgroundPage().hrecipes[tab.id];
+      var hcards      = chrome.extension.getBackgroundPage().hcards[tab.id];
+      var hcalendars  = chrome.extension.getBackgroundPage().hcalendars[tab.id];
+      var hreviews    = chrome.extension.getBackgroundPage().hreviews[tab.id];
+      var hrecipes    = chrome.extension.getBackgroundPage().hrecipes[tab.id];
       
       // let's put these suckers on the page!
       $.each(unique_cards(hcards), function(i, hcard) {
