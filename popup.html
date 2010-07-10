@@ -11,6 +11,7 @@
       var hcalendars  = chrome.extension.getBackgroundPage().hcalendars[tab.id];
       var hreviews    = chrome.extension.getBackgroundPage().hreviews[tab.id];
       var hrecipes    = chrome.extension.getBackgroundPage().hrecipes[tab.id];
+      var geos        = chrome.extension.getBackgroundPage().geos[tab.id];
       
       // let's put these suckers on the page!
       $.each(unique_cards(hcards), function(i, hcard) {
@@ -114,6 +115,15 @@
           $('#hrecipe-'+l+' .other').append('<li><strong>From: </strong>'+ hrecipe.author +'</li>');
           
       });
+      
+      $.each(unique_geos(geos), function(l, geo) {
+        var geoHTML = $('<li class="geo" id="geo-'+l+'"><div class="download"><img src="images/pin_map_grey.png"></div><div class="details"><h1>'+ geo.latitude +', '+ geo.longitude +'</h1><ul></ul></div></li>');
+                
+        $("#geos").append(geoHTML);
+        
+        var mapString = [geo.latitude, geo.longitude];
+        $('#geo-'+l+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString)+'" target="_blank" title="View on Google Maps">View this location on Google Maps</a></li>');
+      });
     });
   </script>
   <link href="/stylesheets/popup.css" media="all" rel="stylesheet" type="text/css" /> 
@@ -134,6 +144,9 @@
     </ul>
     
     <ul id="hrecipes">
+    </ul>
+    
+    <ul id="geos">
     </ul>
   </div>
 </body>

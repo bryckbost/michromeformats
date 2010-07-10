@@ -32,7 +32,7 @@ h1 {
   font-weight: normal;
   margin: 0;
 }
-.hcard, .hcalendar, .hreview, .hrecipe {
+.hcard, .hcalendar, .hreview, .hrecipe, .geo {
   margin: 20px 0;
   padding: 10px 15px 5px 15px;
   overflow: hidden;
@@ -43,7 +43,7 @@ h1 {
   -webkit-box-shadow: 0 2px 2px rgba(0,0,0,.2);
   box-shadow: 0 2px 2px rgba(0,0,0,.2);
 }
-.hcard:hover, .hcalendar:hover, .hreview:hover, .hrecipe:hover {
+.hcard:hover, .hcalendar:hover, .hreview:hover, .hrecipe:hover, .geo:hover {
   border: 1px solid #aaa;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d7d7d7));
 }

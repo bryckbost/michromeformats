@@ -8,7 +8,7 @@
     "popup": "popup.html"
   },
   "content_scripts": [ {
-      "js": [ "javascripts/jquery.min.js", "javascripts/microformat.js", "javascripts/hcard.js", "javascripts/hcalendar.js", "javascripts/hreview.js", "javascripts/hrecipe.js", "contentscript.js" ],
+      "js": [ "javascripts/jquery.min.js", "javascripts/microformat.js", "javascripts/hcard.js", "javascripts/hcalendar.js", "javascripts/hreview.js", "javascripts/hrecipe.js", "javascripts/geo.js", "contentscript.js" ],
       "matches": [ "http://*/*", "https://*/*" ]
    } ],
   "icons" : {
