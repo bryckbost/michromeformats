@@ -58,7 +58,7 @@
             var postalCode = hcard.adr[0]["postal-code"] ? hcard.adr[0]["postal-code"] : '';
             var mapString = [street, locality, region, country, postalCode];
             
-            $('#hcard-'+i+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString.join(" "))+'" target="_blank" title="View on Google Maps">'+ street +'<br>'+ locality +', '+ region +' '+ country +' '+ postalCode +'</a></li>');
+            $('#hcard-'+i+' ul').append('<li>'+ street +'<br>'+ locality +', '+ region +' '+ country +' '+ postalCode +'<br><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString.join(" "))+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
           }
         }
       });
@@ -122,7 +122,7 @@
         $("#geos").append(geoHTML);
         
         var mapString = [geo.latitude, geo.longitude];
-        $('#geo-'+l+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString)+'" target="_blank" title="View on Google Maps">View this location on Google Maps</a></li>');
+        $('#geo-'+l+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString)+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
       });
     });
   </script>

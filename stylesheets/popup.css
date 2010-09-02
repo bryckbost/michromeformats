@@ -91,3 +91,8 @@ p {
 a {
   color: #3b3b3b;
 }
+.static-map {
+  display: block;
+  margin-top: 7px;
+  border: 1px solid #888;
+}
