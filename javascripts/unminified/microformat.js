@@ -48,43 +48,6 @@ if (typeof Prototype != 'undefined' || !Array.prototype.filter) {
     }
 });
 
-// ISO8601 Date extension
-Date.ISO8601PartMap = {
-  Year : 1,
-  Month : 2,
-  Date : 3,
-  Hours : 4,
-  Minutes : 5,
-  Seconds : 6,
-  Milliseconds: 7
-}
-
-Date.matchISO8601 = function(text) { 
-  return text.match(/^(\d{4})(?:-?(\d{2})(?:-?(\d{2})(?:T(\d{2}):?(\d{2})(?::?(\d{2})(?:[.]?(\d+))?)?(?:Z|(?:([+-])(\d{2}):?(\d{2}))?)?)?)?)?$/);
-}
-
-Date.parseISO8601 = function(text) {
-  var dateParts = this.matchISO8601(text);
-  if (dateParts) {
-    var date = new Date, parts, offset = 0;
-    for (var prop in this.ISO8601PartMap) {
-      if (part = dateParts[this.ISO8601PartMap[prop]]) 
-        date['set' + prop]((prop == 'Month') ? parseInt(part)-1 : parseInt(part));
-        else date['set' + prop]((prop == 'Date') ? 1 : 0);
-    }
-    
-    if (dateParts[11]) {
-      offset = (parseInt(dateParts[14]) * 60) + parseInt(dateParts[15]);
-      offset *= ((parseInt[13] == '-') ? 1 : -1);
-    }
-    
-    offset -= date.getTimezoneOffset();
-    date.setTime(date.getTime() + (offset * 60 * 1000)); 
-    
-    return date;
-  }
-}
-
 // Main Microformat namespace
 Microformat = {
   define : function(name, spec) {
@@ -204,7 +167,6 @@ Microformat = {
       var date, number;
       if (value == 'true') return true;
       if (value == 'false') return false;
-      if (date = Date.parseISO8601(value)) return date;
       return String(value);
     },
     _propFor : function(name) {
