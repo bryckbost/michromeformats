@@ -43,10 +43,16 @@
               $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ email +'">'+ email +'</li>');              
             });
           }
-            
+
           if (hcard.url) {
             $.each(hcard.url, function(index, url) {
               $('#hcard-'+i+' ul').append('<li><a href="'+ url +'" target="_blank">'+ url + '</a></li>');              
+            });
+          }
+
+          if (hcard.tel) {
+            $.each(hcard.tel, function(index, tel) {
+              $('#hcard-'+i+' ul').append('<li>'+ tel +'</li>');
             });
           }
           
