@@ -53,6 +53,11 @@ h1 {
 .download {
   float: left;
 }
+.download .photo {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
 .vevent:hover, .vcard:hover {
   cursor: pointer;
 }
