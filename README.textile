@@ -2,7 +2,7 @@ h1. Michromeformats
 
 h2. What is it?
 
-Displays any microformats on the page. Supports hCard, hCalendar, hReview and hRecipe.
+It displays any microformats on the page and supports hCard, hCalendar, hReview and hRecipe.
 
 Inspiration came from Remy Sharp's awesome "Microformats Bookmarklet":leftlogic.com/lounge/articles/microformats_bookmarklet, which got its inspiration from "Jon Hick's":http://www.hicksdesign.co.uk/journal/a-proposal-for-a-safari-microformats-plugin proposed Safari plugin.
 
@@ -12,9 +12,9 @@ Designed for humans first and machines second, microformats are a set of simple,
 
 h2. Benefits
 
-* Supports hCard, hCalendar, hReview and hRecipe formats
 * Download/Export data to *.vcf for cards or *.ics for events
-* Links to view addresses on Google Maps
+* Supports hCard, hCalendar, hReview and hRecipe formats
+* Easily view and test your microformats while you're building out a site
 
 h3. Coming soon
 
@@ -24,13 +24,15 @@ h3. Coming soon
 ** hProduct
 ** hAudio
 ** hResume
+** hAtom
+** better rel-tag support
 
 h3. Wild and crazy ideas
 
-* HTML5 database storage for a microformat address book
 * Integrate with other web services, for example:
 ** add an hCard to your Google contacts
 ** add an hCalendar event to your Google calendar
+* Add a context menu for downloading a card or event outside of the popup
 
 h2. Thank You
 
