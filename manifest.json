@@ -1,6 +1,6 @@
 {
   "name": "Michromeformats",
-  "version": "0.2.9",
+  "version": "0.2.91",
   "description": "Displays any microformats on the page. Supports hCard, hCalendar, hReview, hRecipe and geo",
   "page_action": {
     "default_icon": "images/microformats-logo-16.png",
