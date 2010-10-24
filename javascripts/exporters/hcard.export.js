@@ -1,8 +1,8 @@
 Export.HCard = {
   
   /**
-   * Will send a hCard to Google
-   * For now it is quite hard to do, but I'm JSON will be supported one day
+   * Will send an hCard to Google
+   * For now it is quite hard to do, but I'm sure JSON will be supported one day
    * A typical XML structure for adding a contact to Google is:
    * <atom:entry xmlns:atom='http://www.w3.org/2005/Atom' xmlns:gd='http://schemas.google.com/g/2005'>
    *   <atom:category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/contact/2008#contact' />
