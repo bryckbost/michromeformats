@@ -23,6 +23,12 @@ body {
   color: #4b6e0e;
   font-size: 19px;
 }
+.loggedout .login {
+  display: none;
+}
+.loggedin .logout {
+  display: none;
+}
 ul {
   list-style-type: none;
   padding: 0;

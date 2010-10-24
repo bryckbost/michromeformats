@@ -52,3 +52,5 @@ var HCard = Microformat.define('vcard', {
     }
   }]
 });
+
+HCard.prototype.abcdef = 'abc';

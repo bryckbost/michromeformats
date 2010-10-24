@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>OAuth Redirect Page</title>
+    <style type="text/css">
+      body {
+        font: 16px Arial;
+        color: #333;
+      }
+    </style>
+    <script type="text/javascript" src="javascripts/utils/chrome_ex_oauthsimple.js"></script>
+    <script type="text/javascript" src="javascripts/utils/chrome_ex_oauth.js"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        ChromeExOAuth.initCallbackPage();
+      };
+    </script>
+  </head>
+  <body>
+    <p id="message">Redirecting to Google, fasten your seat belts...</p>
+  </body>
+</html>
