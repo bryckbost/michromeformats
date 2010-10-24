@@ -6,7 +6,7 @@ function unique_cards(array) {
       a.push(array[i]);
   }
   return a;
-};
+}
 
 function unique_events(array) {
   var a = [], l = array.length;
@@ -16,7 +16,7 @@ function unique_events(array) {
       a.push(array[i]);
   }
   return a;
-};
+}
 
 function unique_geos(array) {
   var a = [], l = array.length;
@@ -26,4 +26,4 @@ function unique_geos(array) {
       a.push(array[i]);
   }
   return a;
-};
+}

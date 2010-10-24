@@ -58,7 +58,7 @@ Export.HCalendar = {
       'method': 'POST',
       'headers': {
         'GData-Version': '2',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       'parameters': {'alt': 'jsonc'},
       'body': JSON.stringify( vEvent )

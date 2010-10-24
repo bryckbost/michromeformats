@@ -26,6 +26,8 @@ Export.HCard = {
    * </atom:entry>
    */
   google: function( card, callback ){
+    var i;
+    
     if( !card.fn ){
       throw new Error( 'hCard must have a name' );
     }
@@ -34,6 +36,7 @@ Export.HCard = {
     if( !oauth.hasToken() ){
       throw new Error( 'You must be logged in' );
     }
+    
     
     // Create the XML document to send to Google
     var stdXML = "<atom:entry xmlns:atom='http://www.w3.org/2005/Atom' xmlns:gd='http://schemas.google.com/g/2005'>"
@@ -59,7 +62,7 @@ Export.HCard = {
     if( card.email && card.email.length > 0 ){
       
       // Add all email addresses
-      for(var i=0; i<card.email.length; i++){
+      for( i=0; i<card.email.length; i++){
         var elEmail = xml.createElement( 'gd:email' );
         
         // Set address and address type (home|work)
@@ -78,7 +81,7 @@ Export.HCard = {
     
     // Add phone info
     if( card.tel && card.tel.length > 0 ){
-      for( var i=0; i<card.tel.length; i++ ){
+      for( i=0; i<card.tel.length; i++ ){
         var phone = xml.createElement( 'gd:phoneNumber' );
         
         // Set number type to WORK
@@ -96,7 +99,7 @@ Export.HCard = {
     if( card.adr && card.adr.length > 0 ){
       
       // Loop over each address
-      for( var i=0; i<card.adr.length; i++ ){
+      for( i=0; i<card.adr.length; i++ ){
         
         // Create a wrapper: structuredPostalAddress
         var address = xml.createElement( 'gd:structuredPostalAddress' );
@@ -148,7 +151,7 @@ Export.HCard = {
       'method': 'POST',
       'headers': {
         'GData-Version': '3.0',
-        'Content-Type': 'application/atom+xml',
+        'Content-Type': 'application/atom+xml'
       },
       'parameters': {'alt': 'json'},
       'body': Serializer.serializeToString( xml )

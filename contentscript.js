@@ -1,5 +1,3 @@
-discoverMicroformats();
-
 function discoverMicroformats() {
 	var hcards      = HCard.discover();
   var hcalendars  = HCalendar.discover();
@@ -27,4 +25,6 @@ function discoverMicroformats() {
 
   chrome.extension.sendRequest({hcards: hcards, hcalendars: hcalendars, hreviews: hreviews, hrecipes: hrecipes, geos: geos});
 }
+
+discoverMicroformats();
 
