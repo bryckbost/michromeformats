@@ -150,7 +150,7 @@ Microformat = {
     } else nodeList = context;
     var re = new RegExp('(^|\\s)' + className + '(\\s|$)');
     return Array.filter(nodeList, function (node) {
-      return node.className.match(re)
+      return node.className.match(re);
     });
   },
   extend: function (dest, source) {
