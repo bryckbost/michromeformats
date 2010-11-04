@@ -107,3 +107,17 @@ a {
   margin-top: 7px;
   border: 1px solid #888;
 }
+.googleconnection {
+  font-size: 11px;
+  overflow: hidden;
+}
+.googleconnection div {
+  float: right;
+  background: #fff url(../images/googleIcon.png) no-repeat;
+  height: 16px;
+  padding-left: 25px;
+}
+.submitvevent, .submithcard {
+  margin-right: 10px;
+  margin-top: -1px;
+}

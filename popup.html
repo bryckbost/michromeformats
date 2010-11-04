@@ -6,35 +6,35 @@
   <script type="text/javascript" src="javascripts/application.js"></script>
   <script>
     var bgPage = chrome.extension.getBackgroundPage();
-    
+
     // Set the body class to the user status (loggedin or loggedout)
     function updateStatus(){
       if( bgPage.oauth.hasToken() ){
-        $(document.body).removeClass( 'loggedout' ).addClass( 'loggedin' );
+        $(document.body).removeClass('loggedout').addClass('loggedin');
       } else {
-        $(document.body).removeClass( 'loggedin' ).addClass( 'loggedout' );
+        $(document.body).removeClass('loggedin').addClass('loggedout');
       }
     }
-    
+
     $(document).ready(function(){
-      
+
       // Check the user status when the popup loads
       updateStatus();
-      
+
       $('#logoutbutton').click(function(){
         bgPage.logout();
         updateStatus();
       });
 
       $('#loginbutton').click(function(){
-        
+
         // Autherize via oauth
         bgPage.oauth.authorize(function(){
           updateStatus();
         });
       });
     });
-    
+
     chrome.tabs.getSelected(null, function(tab) {
       // get the microformats from the current tab
       var hcards      = bgPage.hcards[tab.id];
@@ -42,7 +42,7 @@
       var hreviews    = bgPage.hreviews[tab.id];
       var hrecipes    = bgPage.hrecipes[tab.id];
       var geos        = bgPage.geos[tab.id];
-      
+
       // let's put these suckers on the page!
       $.each(unique_cards(hcards), function(i, hcard) {
         // What other data should we display?
@@ -51,9 +51,9 @@
                        + (hcard.photo ? '<img src="'+hcard.photo[0]+'" class="photo"> ' : '<img src="images/vcf_48.png">')
                      + '</div>'
                      + '<div class="details">'
-                       + '<h1>' 
-                         + hcard.fn 
-                         + '<a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download this hCard" target="_blank" class="vcard">'
+                       + '<h1>'
+                         + hcard.fn
+                         + '<a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download" target="_blank" class="vcard">'
                            + '<img src="images/hcard_download.png">'
                          + '</a>'
                          + '<a href="#" class="submithcard" title="Add to Google Contacts">'
@@ -66,42 +66,42 @@
 
         // fn is required so only output the vcard if it's "valid"
         if (hcard.fn) {
-          
+
           // When the Google icon is clicked, the hcard will be added to Google Contacts
           $('.submithcard', html).click(function(){
-            bgPage.Export.HCard.google( hcard, function( txt, xhr ){
+            bgPage.Export.HCard.google(hcard, function(txt, xhr){
               alert( "Contact was added! (not sure though, I didn't check the HTTP status)" );
             });
             return false;
           });
-		  
+
           $("#hcards").append(html);
-          
+
           if (hcard.org) {
             $.each(hcard.org, function(index, org) {
-              $('#hcard-'+i+' ul').append('<li>'+ org.organizationName +'</li>');              
+              $('#hcard-'+i+' ul').append('<li>'+ org.organizationName +'</li>');
             });
           }
-          
+
           if (hcard.role) {
             $.each(hcard.role, function(index, role) {
-              $('#hcard-'+i+' ul').append('<li>'+ role +'</li>');              
+              $('#hcard-'+i+' ul').append('<li>'+ role +'</li>');
             });
           }
-          
+
           if (hcard.nickname) {
             $('#hcard-'+i+' ul').append('<li>Nickname: '+ hcard.nickname[0] +'</li>');
           }
-          
+
           if (hcard.email) {
             $.each(hcard.email, function(index, email) {
-              $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ email +'">'+ email +'</li>');              
+              $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ email +'">'+ email +'</li>');
             });
           }
 
           if (hcard.url) {
             $.each(hcard.url, function(index, url) {
-              $('#hcard-'+i+' ul').append('<li><a href="'+ url +'" target="_blank">'+ url + '</a></li>');              
+              $('#hcard-'+i+' ul').append('<li><a href="'+ url +'" target="_blank">'+ url + '</a></li>');
             });
           }
 
@@ -110,7 +110,7 @@
               $('#hcard-'+i+' ul').append('<li>'+ tel +'</li>');
             });
           }
-          
+
           if (hcard.adr) {
             var street = hcard.adr[0]["street-address"] ? hcard.adr[0]["street-address"] : '';
             var locality = hcard.adr[0].locality ? hcard.adr[0].locality : '';
@@ -118,12 +118,12 @@
             var country = hcard.adr[0]["country-name"] ? hcard.adr[0]["country-name"] : '';
             var postalCode = hcard.adr[0]["postal-code"] ? hcard.adr[0]["postal-code"] : '';
             var mapString = [street, locality, region, country, postalCode];
-            
+
             $('#hcard-'+i+' ul').append('<li>'+ street +'<br>'+ locality +', '+ region +' '+ country +' '+ postalCode +'<br><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString.join(" "))+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
           }
         }
       });
-      
+
       $.each(unique_events(hcalendars), function(j, hcalendar) {
         var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'">'
                          + '<div class="download">'
@@ -132,9 +132,9 @@
                            + '<span class="dtstart-day">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%d') +'</span>'
                          + '</div>'
                          + '<div class="details">'
-                           + '<h1>' 
-                             + hcalendar.summary 
-                             + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download this hCalendar" target="_blank" class="vevent">'
+                           + '<h1>'
+                             + hcalendar.summary
+                             + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download" target="_blank" class="vevent">'
                                + '<img src="images/icon-hcalendar-download.png">'
                              + '</a>'
                              + '<a href="#" class="submitvevent" title="Add to Google Contacts">'
@@ -146,32 +146,32 @@
                            + '</ul>'
                          + '</div>'
                        + '</li>');
-        
+
         $("#hcalendars").append(hcalHtml);
-        
+
         // Handle submit to Google link
         $('.submitvevent', hcalHtml).click(function(){
-          bgPage.Export.HCalendar.google( hcalendar, function( txt, xhr ){
+          bgPage.Export.HCalendar.google(hcalendar, function(txt, xhr){
             alert( "Event was added! (not sure though, I didn't check the HTTP status)" );
           });
           return false;
         });
-                
+
         if (hcalendar.dtend)
           $('#hcal-'+j+' ul .start').append(' — '+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P'));
-          
+
         if (hcalendar.location)
           $('#hcal-'+j+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(hcalendar.location)+'" target="_blank" title="View on Google Maps">'+hcalendar.location+'</a></li>');
       });
-      
-      $.each(hreviews, function(k, hreview) {      
+
+      $.each(hreviews, function(k, hreview) {
         var hreviewHTML = $('<li class="hreview" id="hreview-'+k+'"><div class="download"><img src="images/star.png"></div><div class="details"><h1>' + (hreview.item.fn || hreview.item.url || hreview.item.photo_url) + '</h1><ul></ul></div></li>');
-                
+
         $("#hreviews").append(hreviewHTML);
-        
+
         if (hreview.summary)
           $('#hreview-'+k+' ul').append('<li>' + hreview.summary + '</li>');
-          
+
         if (hreview.description)
           $('#hreview-'+k+' ul').append('<li>'+ hreview.description +'</li>');
 
@@ -181,46 +181,46 @@
         if (hreview.rating)
           $('#hreview-'+k+' ul').append('<li><strong>Rating: </strong>'+ hreview.rating +'</li>');
       });
-      
+
       $.each(hrecipes, function(l, hrecipe) {
         var hrecipeHTML = $('<li class="hrecipe" id="hrecipe-'+l+'"><div class="download"><img src="images/recipe.png"></div><div class="details"><h1>'+ hrecipe.fn +'</h1><ul class="ingredients"><li><strong>Ingredients</strong></li></ul><ul class="other"></ul></div></li>');
-                
+
         $("#hrecipes").append(hrecipeHTML);
-        
+
         $.each(hrecipe.ingredient, function(m, ingredient) {
           $('#hrecipe-'+l+' .ingredients').append('<li>'+ ingredient +'</li>');
         });
-        
+
         if (hrecipe.instructions)
           $('#hrecipe-'+l+' .other').append('<li><strong>Directions</strong></li><li>'+ hrecipe.instructions +'</li>');
-          
+
         if (hrecipe.duration)
           $('#hrecipe-'+l+' .other').append('<li><strong>Total time: </strong>'+ hrecipe.duration[0] +'</li>');
-        
+
         if (hrecipe.yield)
           $('#hrecipe-'+l+' .other').append('<li><strong>Yield: </strong>'+ hrecipe.yield +'</li>');
-          
+
         if (hrecipe.author)
           $('#hrecipe-'+l+' .other').append('<li><strong>From: </strong>'+ hrecipe.author +'</li>');
-          
+
       });
-      
+
       $.each(unique_geos(geos), function(l, geo) {
         var geoHTML = $('<li class="geo" id="geo-'+l+'"><div class="download"><img src="images/pin_map_grey.png"></div><div class="details"><h1>'+ geo.latitude +', '+ geo.longitude +'</h1><ul></ul></div></li>');
-                
+
         $("#geos").append(geoHTML);
-        
+
         var mapString = [geo.latitude, geo.longitude];
         $('#geo-'+l+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString)+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
       });
     });
   </script>
-  <link href="/stylesheets/popup.css" media="all" rel="stylesheet" type="text/css" /> 
+  <link href="/stylesheets/popup.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body class="loggedout">
   <div id="microformats">
     <div class="googleconnection">
-      <div class="login">You are currently logged in, <a href="#" id="logoutbutton">logout now</a></div>
+      <div class="login">You are currently logged in, <a href="#" id="logoutbutton">logout now</a>.</div>
       <div class="logout">You are currently logged out, <a href="#" id="loginbutton">login now</a>.</div>
     </div>
     <div id="header">
@@ -229,16 +229,16 @@
     </div>
     <ul id="hcards">
     </ul>
-    
+
     <ul id="hcalendars">
     </ul>
-    
+
     <ul id="hreviews">
     </ul>
-    
+
     <ul id="hrecipes">
     </ul>
-    
+
     <ul id="geos">
     </ul>
   </div>
