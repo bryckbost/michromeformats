@@ -16,14 +16,14 @@ Export.HCalendar = {
    *   }
    * }
    */
-  google: function( calendar, callback ){
-    if( !calendar.summary || !calendar.dtstart ){
-      throw new Error( 'Events must have a summary and a start date ' );
+  google: function(calendar, callback) {
+    if (!calendar.summary || !calendar.dtstart) {
+      throw new Error('Events must have a summary and a start date ');
     }
     
     // Make sure the user is logged in 
-    if( !oauth.hasToken() ){
-      throw new Error( 'You must be logged in' );
+    if (!oauth.hasToken()) {
+      throw new Error('You must be logged in');
     }
     
     var sendURL = 'https://www.google.com/calendar/feeds/default/private/full';
@@ -39,17 +39,17 @@ Export.HCalendar = {
     vEvent.data.when[0].start = calendar.dtstart;
     
     // Set date end/time
-    if( calendar.dtend ){
+    if (calendar.dtend) {
       vEvent.data.when[0].end = calendar.dtend;
     }
     
     // Set details
-    if( calendar.description ){
+    if (calendar.description) {
       vEvent.data.details = calendar.description;
     }
     
     // Set the location
-    if( calendar.location ){
+    if (calendar.location) {
       vEvent.data.location = calendar.location;
     }
     
@@ -57,11 +57,10 @@ Export.HCalendar = {
     oauth.sendSignedRequest(sendURL, callback, {
       'method': 'POST',
       'headers': {
-        'GData-Version': '2',
+        'GData-Version': '2.0',
         'Content-Type': 'application/json'
       },
-      'parameters': {'alt': 'jsonc'},
-      'body': JSON.stringify( vEvent )
+      'body': JSON.stringify(vEvent)
     });
   }
 };
