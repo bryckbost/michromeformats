@@ -69,8 +69,12 @@
 
           // When the Google icon is clicked, the hcard will be added to Google Contacts
           $('.submithcard', html).click(function(){
-            bgPage.Export.HCard.google(hcard, function(txt, xhr){
-              alert( "Contact was added! (not sure though, I didn't check the HTTP status)" );
+            bgPage.Export.HCard.google(hcard, function(txt, response){
+              if(response.status == 201) {
+                $('.submithcard img', html).first().replaceWith('<img src="images/check.png" alt="Added" />');
+              } else {
+                console.log('FAILED');
+              }
             });
             return false;
           });
