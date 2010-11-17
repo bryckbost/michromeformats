@@ -289,7 +289,7 @@ ChromeExOAuth.sendRequest = function(method, url, headers, body, callback) {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(data) {
     callback(xhr, data);
-  }
+  };
   xhr.open(method, url, true);
   if (headers) {
     for (var header in headers) {
@@ -441,12 +441,12 @@ ChromeExOAuth.prototype.initOAuthFlow = function(callback) {
     var params = ChromeExOAuth.getQueryStringParams();
     if (params['chromeexoauthcallback'] == 'true') {
       var oauth_token = params['oauth_token'];
-      var oauth_verifier = params['oauth_verifier']
+      var oauth_verifier = params['oauth_verifier'];
       this.getAccessToken(oauth_token, oauth_verifier, callback);
     } else {
       var request_params = {
         'url_callback_param' : 'chromeexoauthcallback'
-      }
+      };
       this.getRequestToken(function(url) {
         window.location.href = url;
       }, request_params);
