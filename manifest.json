@@ -1,7 +1,7 @@
 {
   "name": "Michromeformats",
   "version": "0.3.0",
-  "description": "Displays any microformats on the page. Supports hCard, hCalendar, hReview, hRecipe and geo. hCard can be downloaded or exported to Google Contacts. hCalendars will support exporting to Google Calendar soon. ",
+  "description": "Displays any microformats on the page. Supports hCard, hCalendar, hReview, hRecipe and geo. Download or export to Google Contacts.",
   "page_action": {
     "default_icon": "images/microformats-logo-16.png",
     "default_title" : "Click to view the microformats…",
