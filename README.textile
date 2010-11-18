@@ -4,6 +4,8 @@ h2. What is it?
 
 It displays any microformats on the page and supports hCard, hCalendar, hReview and hRecipe.
 
+hCards and hCalendars can be exported to your computer so you can add contacts to an address book or calendar.
+
 Inspiration came from Remy Sharp's awesome "Microformats Bookmarklet":leftlogic.com/lounge/articles/microformats_bookmarklet, which got its inspiration from "Jon Hick's":http://www.hicksdesign.co.uk/journal/a-proposal-for-a-safari-microformats-plugin proposed Safari plugin.
 
 h3. What are microformats?
@@ -29,11 +31,15 @@ h3. Coming soon
 
 h3. Wild and crazy ideas
 
-* Integrate with other web services, for example:
-** add an hCard to your Google contacts
-** add an hCalendar event to your Google calendar
-* Add a context menu for downloading a card or event outside of the popup
+* Integrate with other web services, for example
+* Add a context menu for downloading a card or event on the page
 
 h2. Thank You
+
+h3. Contributors
+
+"Haampie":https://github.com/haampie for providing the Google Contacts and Calendar integration.
+
+h3. Icons
 
 Some of the icons come from "Matthias Pfefferle's Microformat icon set":http://notizblog.org/projects/microformats-icons/. This extension wouldn't be *pretty* without these awesome little icons. The recipe icon comes from the MealKeeper set which can be found at "deviantart.com":http://shlyapnikova.deviantart.com/art/Icon-for-MealKeeper-s-soft-162435451
