@@ -155,8 +155,10 @@
 
         // Handle submit to Google link
         $('.submitvevent', hcalHtml).click(function(){
-          bgPage.Export.HCalendar.google(hcalendar, function(txt, xhr){
-            alert( "Event was added! (not sure though, I didn't check the HTTP status)" );
+          bgPage.Export.HCalendar.google(hcalendar, function(txt, response){
+            console.log(txt);
+            console.log(response);
+            // alert( "Event was added! (not sure though, I didn't check the HTTP status)" );
           });
           return false;
         });
