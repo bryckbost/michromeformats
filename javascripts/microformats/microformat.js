@@ -115,8 +115,8 @@ Microformat = {
       return value;
     },
     _getText: function (node) {
-      if (node.textContent) return node.textContent;
-      return Array.map(node.childNodes, function (node) {
+      if (node.textContent || node.textContent == "") return node.textContent;
+      return node.childNodes.map(function (node) {
         if (node.nodeType == 3) return node.nodeValue;
         else return this._getText(node);
       }, this).join('').replace(/\s+/g, ' ').replace(/(^\s+)|(\s+)$/g, '');
