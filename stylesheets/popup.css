@@ -18,9 +18,8 @@ body {
 }
 #header h1 {
   margin-left: 51px;
-  height: 48px;
   margin-top: 16px;
-  color: #4b6e0e;
+  color: rgb(0, 141, 43);
   font-size: 19px;
 }
 .loggedout .login {
@@ -51,7 +50,6 @@ h1 {
 }
 .hcard:hover, .hcalendar:hover, .hreview:hover, .hrecipe:hover, .geo:hover {
   border: 1px solid #aaa;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d7d7d7));
 }
 .hcard h1 a, .hcalendar h1 a {
   float: right;
