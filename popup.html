@@ -205,6 +205,22 @@
 
         var mapString = [geo.latitude, geo.longitude];
         $('#geo-'+l+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString)+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
+
+        $.ajax({
+          url: 'http://high-sky-53.heroku.com/places?lat='+geo.latitude+'&lon='+geo.longitude,
+          beforeSend: function() {
+            $('#geo-'+l+' .details').append('<p>Loading nearby places…</p>');
+          },
+          success: function(data) {
+            d = JSON.parse(data);
+            $('#geo-'+l+' p').remove();
+            $('#geo-'+l+' .details').append('<strong>Nearby Places</strong><ul class="places"></ul>');
+
+            $.each(d.features.slice(0,10), function(n, feature) {
+              $('#geo-'+l+' .details ul.places').append('<li><strong>'+feature.properties.name+'</strong><br>'+feature.properties.classifiers[0].category+'</li>');
+            });
+          },
+        });
       });
     });
   </script>
