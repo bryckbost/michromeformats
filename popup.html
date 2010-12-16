@@ -70,7 +70,7 @@
           // When the Google icon is clicked, the hcard will be added to Google Contacts
           $('.submithcard', html).click(function(){
             bgPage.Export.HCard.google(hcard, function(txt, response){
-              if(response.status == 201) {
+              if (response.status == 201) {
                 $('.submithcard img', html).first().replaceWith('<img src="images/check.png" alt="Added" />');
               } else {
                 console.log('FAILED');
@@ -156,9 +156,11 @@
         // Handle submit to Google link
         $('.submitvevent', hcalHtml).click(function(){
           bgPage.Export.HCalendar.google(hcalendar, function(txt, response){
-            console.log(txt);
-            console.log(response);
-            // alert( "Event was added! (not sure though, I didn't check the HTTP status)" );
+            if (response.status == 201) {
+              $('.submitvevent img', hcalHtml).first().replaceWith('<img src="images/check.png" alt="Added" />');
+            } else {
+              console.log('FAILED');
+            }
           });
           return false;
         });
