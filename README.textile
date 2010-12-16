@@ -4,7 +4,7 @@ h2. What is it?
 
 It displays any microformats on the page and supports hCard, hCalendar, hReview and hRecipe.
 
-hCards and hCalendars can be exported to your computer so you can add contacts to an address book or calendar.
+hCards and hCalendars can be exported to your computer so you can add contacts to an address book or calendar. Or, connect to your Google account and import contacts to your Google Contacts or Google Calendar.
 
 Inspiration came from Remy Sharp's awesome "Microformats Bookmarklet":leftlogic.com/lounge/articles/microformats_bookmarklet, which got its inspiration from "Jon Hick's":http://www.hicksdesign.co.uk/journal/a-proposal-for-a-safari-microformats-plugin proposed Safari plugin.
 
