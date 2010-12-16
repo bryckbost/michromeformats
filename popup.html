@@ -141,6 +141,9 @@
                              + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download" target="_blank" class="vevent">'
                                + '<img src="images/icon-hcalendar-download.png">'
                              + '</a>'
+                             + '<a href="#" class="submitvevent" title="Add to Google Contacts">'
+                               + '<img src="images/googleIcon.png" alt="Google" />'
+                             + '</a>'
                            + '</h1>'
                            + '<ul>'
                              + '<li class="start">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li>'
@@ -149,6 +152,16 @@
                        + '</li>');
 
         $("#hcalendars").append(hcalHtml);
+
+        // Handle submit to Google link
+        $('.submitvevent', hcalHtml).click(function(){
+          bgPage.Export.HCalendar.google(hcalendar, function(txt, response){
+            console.log(txt);
+            console.log(response);
+            // alert( "Event was added! (not sure though, I didn't check the HTTP status)" );
+          });
+          return false;
+        });
 
         if (hcalendar.dtend)
           $('#hcal-'+j+' ul .start').append(' — '+ $.fn.strftime($.fn.parseISO(hcalendar.dtend), '%b %d, %Y at %i:%M%P'));
