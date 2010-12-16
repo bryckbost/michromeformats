@@ -18,22 +18,22 @@
     // Set up OAuth for a secure connection between Google and this plugin
     // https://www.google.com/m8/feeds/ is for Google Contacts
     // https://www.google.com/calendar/feeds/ is for Google Calendar
-		var SCOPE = 'https://www.google.com/m8/feeds/ https://www.google.com/calendar/feeds/';
+    var SCOPE = 'https://www.google.com/m8/feeds/ https://www.google.com/calendar/feeds/';
 
-		var oauth = ChromeExOAuth.initBackgroundPage({
-			'request_url': 'https://www.google.com/accounts/OAuthGetRequestToken',
-			'authorize_url': 'https://www.google.com/accounts/OAuthAuthorizeToken',
-			'access_url': 'https://www.google.com/accounts/OAuthGetAccessToken',
-			'consumer_key': 'anonymous',
-			'consumer_secret': 'anonymous',
-			'scope': SCOPE,
-			'app_name': 'Michromeformats'
-		});
+    var oauth = ChromeExOAuth.initBackgroundPage({
+      'request_url': 'https://www.google.com/accounts/OAuthGetRequestToken',
+      'authorize_url': 'https://www.google.com/accounts/OAuthAuthorizeToken',
+      'access_url': 'https://www.google.com/accounts/OAuthGetAccessToken',
+      'consumer_key': 'anonymous',
+      'consumer_secret': 'anonymous',
+      'scope': SCOPE,
+      'app_name': 'Michromeformats'
+    });
 
     // Log out, can it be even simpler?
-		function logout(){
-			oauth.clearTokens();
-		}
+    function logout(){
+      oauth.clearTokens();
+    }
 
     chrome.extension.onRequest.addListener(function onRequest(request, sender, sendResponse) {
       var tabId         = sender.tab.id;
