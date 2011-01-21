@@ -39,6 +39,7 @@ h2. Thank You
 h3. Contributors
 
 "Haampie":https://github.com/haampie for providing the Google Contacts and Calendar integration.
+"ThomasArdal":https://github.com/ThomasArdal for providing the hreview-aggregate microformat.
 
 h3. Icons
 
