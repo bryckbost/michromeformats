@@ -1,7 +1,7 @@
-{
+﻿{
   "name": "Michromeformats",
-  "version": "0.4.3",
-  "description": "Shows microformats on the page. Supports hCard, hCalendar, hReview, hRecipe and geo. Download or export to Google Contacts/Calendar.",
+  "version": "0.4.2",
+  "description": "Shows microformats on the page. Supports hCard, hCalendar, hReview, hReview-aggregate, hRecipe and geo. Download or export to Google Contacts/Calendar.",
   "page_action": {
     "default_icon": "images/microformats-logo-16.png",
     "default_title" : "Click to view the microformats…",
@@ -14,6 +14,7 @@
         "javascripts/microformats/hcard.js",
         "javascripts/microformats/hcalendar.js",
         "javascripts/microformats/hreview.js",
+        "javascripts/microformats/hreview-aggregate.js",
         "javascripts/microformats/hrecipe.js",
         "javascripts/microformats/geo.js",
         "contentscript.js"

@@ -2,7 +2,7 @@ h1. Michromeformats
 
 h2. What is it?
 
-It displays any microformats on the page and supports hCard, hCalendar, hReview and hRecipe.
+It displays any microformats on the page and supports hCard, hCalendar, hReview, hReview-aggregate and hRecipe.
 
 hCards and hCalendars can be exported to your computer so you can add contacts to an address book or calendar. Or, connect to your Google account and import contacts to your Google Contacts or Google Calendar.
 
@@ -15,7 +15,7 @@ Designed for humans first and machines second, microformats are a set of simple,
 h2. Benefits
 
 * Download/Export data to *.vcf for cards or *.ics for events
-* Supports hCard, hCalendar, hReview and hRecipe formats
+* Supports hCard, hCalendar, hReview, hReview-aggregate and hRecipe formats
 * Easily view and test your microformats while you're building out a site
 
 h3. Coming soon
@@ -39,6 +39,7 @@ h2. Thank You
 h3. Contributors
 
 "Haampie":https://github.com/haampie for providing the Google Contacts and Calendar integration.
+"ThomasArdal":https://github.com/ThomasArdal for providing the hreview-aggregate microformat.
 
 h3. Icons
 

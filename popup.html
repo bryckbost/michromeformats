@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <script type="text/javascript" src="javascripts/utils/jquery.min.js"></script>
@@ -19,7 +19,6 @@
     }
 
     $(document).ready(function(){
-
       // Check the user status when the popup loads
       updateStatus();
 
@@ -42,6 +41,7 @@
       var hcards      = bgPage.hcards[tab.id];
       var hcalendars  = bgPage.hcalendars[tab.id];
       var hreviews    = bgPage.hreviews[tab.id];
+      var hreviewaggs = bgPage.hreviewaggs[tab.id];
       var hrecipes    = bgPage.hrecipes[tab.id];
       var geos        = bgPage.geos[tab.id];
 
@@ -192,6 +192,24 @@
           $('#hreview-'+k+' ul').append('<li><strong>Rating: </strong>'+ hreview.rating +'</li>');
       });
 
+      $.each(hreviewaggs, function(m, hreviewagg) {
+        var hreviewaggHTML = $('<li class="hreviewagg" id="hreviewagg-'+m+'"><div class="download"><img src="images/stars.png"></div><div class="details"><h1>' + (hreviewagg.item.fn || hreviewagg.item.url || hreviewagg.item.photo_url) + '</h1><ul></ul></div></li>');
+
+        $("#hreviewaggs").append(hreviewaggHTML);
+
+        if (hreviewagg.summary)
+          $('#hreviewagg-'+m+' ul').append('<li>'+ hreviewagg.summary +'</li>');
+
+        if (hreviewagg.rating)
+          $('#hreviewagg-'+m+' ul').append('<li><strong>Rating: </strong>'+ hreviewagg.rating +'</li>');
+
+        if (hreviewagg.count)
+          $('#hreviewagg-'+m+' ul').append('<li><strong>Count: </strong>' + hreviewagg.count + '</li>');
+
+        if (hreviewagg.votes)
+          $('#hreviewagg-'+m+' ul').append('<li><strong>Votes: </strong>'+ hreviewagg.votes +'</li>');
+      });
+
       $.each(hrecipes, function(l, hrecipe) {
         var hrecipeHTML = $('<li class="hrecipe" id="hrecipe-'+l+'"><div class="download"><img src="images/recipe.png"></div><div class="details"><h1>'+ hrecipe.fn +'</h1><ul class="ingredients"><li><strong>Ingredients</strong></li></ul><ul class="other"></ul></div></li>');
 
@@ -258,6 +276,9 @@
     </ul>
 
     <ul id="hreviews">
+    </ul>
+
+    <ul id="hreviewaggs">
     </ul>
 
     <ul id="hrecipes">
