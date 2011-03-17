@@ -11,12 +11,13 @@
       "js": [
         "javascripts/utils/jquery.min.js",
         "javascripts/microformats/microformat.js",
-        "javascripts/microformats/hcard.js",
-        "javascripts/microformats/hcalendar.js",
-        "javascripts/microformats/hreview.js",
         "javascripts/microformats/hreview-aggregate.js",
         "javascripts/microformats/hrecipe.js",
-        "javascripts/microformats/geo.js",
+        "javascripts/microformats/microformats-shiv.min.js",
+        "javascripts/microformats/microformats-coredefinition.min.js",
+        "javascripts/microformats/microformats-hreviewdefinition.min.js",
+        "javascripts/microformats/microformats-isodate.min.js",
+        "javascripts/microformats/json2.min.js",
         "contentscript.js"
       ],
       "matches": [ "http://*/*", "https://*/*", "file://*/*" ]

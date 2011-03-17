@@ -1,10 +1,10 @@
 function discoverMicroformats() {
-  var hcards      = HCard.discover();
-  var hcalendars  = HCalendar.discover();
-  var hreviews    = HReview.discover();
+  var hcards      = ufShiv.get('hCard', document.body)['microformats']['vcard'];
+  var hcalendars  = ufShiv.get('hCalendar', document.body)['microformats']['vevent'];
+  var hreviews    = ufShiv.get('hReview', document.body)['microformats']['hreview'];
   var hreviewaggs = HReviewAggregate.discover();
   var hrecipes    = HRecipe.discover();
-  var geos        = Geo.discover();
+  var geos        = ufShiv.get('geo', document.body)['microformats']['geo'];
 
   // convert objects into JSON so we can
   // pass the arrays to the background page

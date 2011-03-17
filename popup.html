@@ -85,7 +85,7 @@
 
           if (hcard.org) {
             $.each(hcard.org, function(index, org) {
-              $('#hcard-'+i+' ul').append('<li>'+ org.organizationName +'</li>');
+              $('#hcard-'+i+' ul').append('<li>'+ org['organization-name'] +'</li>');
             });
           }
 
@@ -101,7 +101,7 @@
 
           if (hcard.email) {
             $.each(hcard.email, function(index, email) {
-              $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ email +'">'+ email +'</li>');
+              $('#hcard-'+i+' ul').append('<li><a href="mailto:'+ email['value'] +'">'+ email['value'] +'</li>');
             });
           }
 
@@ -113,7 +113,8 @@
 
           if (hcard.tel) {
             $.each(hcard.tel, function(index, tel) {
-              $('#hcard-'+i+' ul').append('<li>'+ tel +'</li>');
+              var type = tel.type ? tel.type.toString() + ': ' : '';
+              $('#hcard-'+i+' ul').append('<li>'+ type + tel['value'] +'</li>');
             });
           }
 
@@ -248,7 +249,6 @@
                 console.error(err);
             } else {
                 $('#geo-'+l+' .details').append('<strong>Nearby Places</strong><ul class="places"></ul>');
-
                 $.each(data.features.slice(0,10), function(n, feature) {
                   $('#geo-'+l+' .details ul.places').append('<li><strong>'+feature.properties.name+'</strong><br>'+feature.properties.classifiers[0].category+'</li>');
                 });
