@@ -1,5 +1,5 @@
 ﻿{
-  "name": "Michromeformats",
+  "name": "Microformats for Google Chrome",
   "version": "0.4.5",
   "description": "Shows microformats on the page. Supports hCard, hCalendar, hReview, hReview-aggregate, hRecipe and geo.",
   "page_action": {
