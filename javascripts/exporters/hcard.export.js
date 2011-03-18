@@ -66,7 +66,7 @@ Export.HCard = {
         var elEmail = xml.createElement( 'gd:email' );
         
         // Set address and address type (home|work)
-        elEmail.setAttribute( 'address', card.email[i] );
+        elEmail.setAttribute( 'address', card.email[i]['value'] );
         
         // Set address type to WORK
         elEmail.setAttribute( 'rel', 'http://schemas.google.com/g/2005#work' );
@@ -88,7 +88,7 @@ Export.HCard = {
         phone.setAttribute( 'rel', 'http://schemas.google.com/g/2005#work' );
         
         // Add number as text node
-        phone.appendChild( xml.createTextNode( card.tel[i] ) );
+        phone.appendChild( xml.createTextNode( card.tel[i]['value'] ) );
         
         // Append it to the XML doc
         root.appendChild( phone );
