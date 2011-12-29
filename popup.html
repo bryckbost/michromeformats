@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
   <script type="text/javascript" src="javascripts/utils/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/utils/PerfectTime.js"></script>
   <script type="text/javascript" src="javascripts/application.js"></script>
@@ -49,9 +51,6 @@
       $.each(unique_cards(hcards), function(i, hcard) {
         // What other data should we display?
         var html = $('<li class="hcard" id="hcard-'+i+'">'
-                     + '<div class="download">'
-                       + (hcard.photo ? '<img src="'+hcard.photo[0]+'" class="photo"> ' : '<img src="images/vcf_48.png">')
-                     + '</div>'
                      + '<div class="details">'
                        + '<h1>'
                          + hcard.fn
@@ -128,16 +127,17 @@
 
             $('#hcard-'+i+' ul').append('<li>'+ street +'<br>'+ locality +', '+ region +' '+ country +' '+ postalCode +'<br><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString.join(" "))+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
           }
+          
+          if (hcard.photo) {
+            $.each(hcard.photo, function(index, url) {
+              $('#hcard-'+i+' ul').append('<li><img src="'+hcard.photo[0]+'" class="photo"></li>');
+            });
+          }
         }
       });
 
       $.each(unique_events(hcalendars), function(j, hcalendar) {
         var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'">'
-                         + '<div class="download">'
-                           + '<img src="images/calendargray.png">'
-                           + '<span class="dtstart-month">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b') +'</span>'
-                           + '<span class="dtstart-day">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%d') +'</span>'
-                         + '</div>'
                          + '<div class="details">'
                            + '<h1>'
                              + hcalendar.summary
@@ -272,8 +272,8 @@
 <body class="loggedout">
   <div id="microformats">
     <div class="googleconnection">
-      <div class="login">You are currently logged in, <a href="#" id="logoutbutton">logout now</a>.</div>
-      <div class="logout">You are currently logged out, <a href="#" id="loginbutton">login now</a>.</div>
+      <div class="login">You are connected to Google, <a href="#" id="logoutbutton">disconnect now</a>.</div>
+      <div class="logout">You are not connected to Google, <a href="#" id="loginbutton">connect now</a>.</div>
     </div>
     <div id="header">
       <img src="images/michromeformat-logo-48.png" id="icon">
