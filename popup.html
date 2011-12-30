@@ -54,14 +54,16 @@
                      + '<div class="details">'
                        + '<h1>'
                          + hcard.fn
-                         + '<a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download" target="_blank" class="vcard">'
-                           + '<img src="images/hcard_download.png">'
-                         + '</a>'
-                         + '<a href="#" class="submithcard" title="Add to Google Contacts">'
-                           + '<img src="images/googleIcon.png" alt="Google" />'
-                         + '</a>'
                        + '</h1>'
                        + '<ul></ul>'
+                       + '<div class="download">'
+                         + '<a href="#" class="submithcard" title="Add to Google Contacts">'
+                           + '<span class="webfont">c</span>'
+                         + '</a>'
+                         + '<a href="http://growing-flower-18.heroku.com/vcard?query='+ encodeURIComponent(JSON.stringify(hcard)) + '" title="Download" target="_blank" class="vcard">'
+                           + '<span class="webfont">~</span>'
+                         + '</a>'
+                       + '</div>'
                      + '</div>'
                    + '</li>');
 
@@ -72,7 +74,7 @@
           $('.submithcard', html).click(function(){
             bgPage.Export.HCard.google(hcard, function(txt, response){
               if (response.status == 201) {
-                $('.submithcard img', html).first().replaceWith('<img src="images/check.png" alt="Added" />');
+                $('.submithcard span', html).first().replaceWith('<span class="webfont">3</span>');
               } else {
                 console.log('FAILED');
               }
@@ -141,16 +143,18 @@
                          + '<div class="details">'
                            + '<h1>'
                              + hcalendar.summary
-                             + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download" target="_blank" class="vevent">'
-                               + '<img src="images/icon-hcalendar-download.png">'
-                             + '</a>'
-                             + '<a href="#" class="submitvevent" title="Add to Google Contacts">'
-                               + '<img src="images/googleIcon.png" alt="Google" />'
-                             + '</a>'
                            + '</h1>'
                            + '<ul>'
                              + '<li class="start">'+ $.fn.strftime($.fn.parseISO(hcalendar.dtstart), '%b %d, %Y at %i:%M%P') +'</li>'
                            + '</ul>'
+                           + '<div class="download">'
+                             + '<a href="#" class="submitvevent" title="Add to Google Contacts">'
+                               + '<span class="webfont">c</span>'
+                             + '</a>'
+                             + '<a href="http://growing-flower-18.heroku.com/vevent?query='+ encodeURIComponent(JSON.stringify(hcalendar)) + '" title="Download to your computer" target="_blank" class="vevent">'
+                               + '<span class="webfont">~</span>'
+                             + '</a>'
+                           + '</div'
                          + '</div>'
                        + '</li>');
 
@@ -160,7 +164,7 @@
         $('.submitvevent', hcalHtml).click(function(){
           bgPage.Export.HCalendar.google(hcalendar, function(txt, response){
             if (response.status == 201) {
-              $('.submitvevent img', hcalHtml).first().replaceWith('<img src="images/check.png" alt="Added" />');
+              $('.submitvevent span', hcalHtml).first().replaceWith('<span class="webfont">3</span>');
             } else {
               console.log('FAILED');
             }
@@ -185,7 +189,7 @@
       });
 
       $.each(hreviews, function(k, hreview) {
-        var hreviewHTML = $('<li class="hreview" id="hreview-'+k+'"><div class="download"><img src="images/star.png"></div><div class="details"><h1>' + (hreview.item.fn || hreview.item.url || hreview.item.photo_url) + '</h1><ul></ul></div></li>');
+        var hreviewHTML = $('<li class="hreview" id="hreview-'+k+'"><div class="details"><h1>' + (hreview.item.fn || hreview.item.url || hreview.item.photo_url) + '</h1><ul></ul></div></li>');
 
         $("#hreviews").append(hreviewHTML);
 
@@ -203,7 +207,7 @@
       });
 
       $.each(hreviewaggs, function(m, hreviewagg) {
-        var hreviewaggHTML = $('<li class="hreviewagg" id="hreviewagg-'+m+'"><div class="download"><img src="images/stars.png"></div><div class="details"><h1>' + (hreviewagg.item.fn || hreviewagg.item.url || hreviewagg.item.photo_url) + '</h1><ul></ul></div></li>');
+        var hreviewaggHTML = $('<li class="hreviewagg" id="hreviewagg-'+m+'"><div class="details"><h1>' + (hreviewagg.count || hreviewagg.item.fn || hreviewagg.item.url || hreviewagg.item.photo_url) + '</h1><ul></ul></div></li>');
 
         $("#hreviewaggs").append(hreviewaggHTML);
 
@@ -221,7 +225,7 @@
       });
 
       $.each(hrecipes, function(l, hrecipe) {
-        var hrecipeHTML = $('<li class="hrecipe" id="hrecipe-'+l+'"><div class="download"><img src="images/recipe.png"></div><div class="details"><h1>'+ hrecipe.fn +'</h1><ul class="ingredients"><li><strong>Ingredients</strong></li></ul><ul class="other"></ul></div></li>');
+        var hrecipeHTML = $('<li class="hrecipe" id="hrecipe-'+l+'"><div class="details"><h1>'+ hrecipe.fn +'</h1><ul class="ingredients"><li><strong>Ingredients</strong></li></ul><ul class="other"></ul></div></li>');
 
         $("#hrecipes").append(hrecipeHTML);
 
@@ -246,7 +250,7 @@
       var client = new simplegeo.PlacesClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
 
       $.each(unique_geos(geos), function(l, geo) {
-        var geoHTML = $('<li class="geo" id="geo-'+l+'"><div class="download"><img src="images/pin_map_grey.png"></div><div class="details"><h1>'+ geo.latitude +', '+ geo.longitude +'</h1><ul></ul></div></li>');
+        var geoHTML = $('<li class="geo" id="geo-'+l+'"><div class="details"><h1>'+ geo.latitude +', '+ geo.longitude +'</h1><ul></ul></div></li>');
 
         $("#geos").append(geoHTML);
 
