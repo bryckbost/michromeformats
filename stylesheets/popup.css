@@ -109,7 +109,7 @@ p {
 }
   .download a span {
     height: 28px;
-    line-height: 16px;
+    line-height: 28px;
     display: inline-block;    
   }
 .download a:hover {
