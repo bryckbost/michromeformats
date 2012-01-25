@@ -48,7 +48,7 @@
       var geos        = bgPage.geos[tab.id];
 
       // let's put these suckers on the page!
-      $.each(unique_cards(hcards), function(i, hcard) {
+      $.each(hcards, function(i, hcard) {
         // What other data should we display?
         var html = $('<li class="hcard" id="hcard-'+i+'">'
                      + '<div class="details">'
@@ -138,7 +138,7 @@
         }
       });
 
-      $.each(unique_events(hcalendars), function(j, hcalendar) {
+      $.each(hcalendars, function(j, hcalendar) {
         var hcalHtml = $('<li class="hcalendar" id="hcal-'+j+'">'
                          + '<div class="details">'
                            + '<h1>'
