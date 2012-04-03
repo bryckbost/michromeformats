@@ -6,7 +6,6 @@
   <script type="text/javascript" src="javascripts/utils/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/utils/PerfectTime.js"></script>
   <script type="text/javascript" src="javascripts/application.js"></script>
-  <script type="text/javascript" src="http://cdn.simplegeo.com/js/1.3/simplegeo.places.min.js"></script>
 
   <script>
     var bgPage = chrome.extension.getBackgroundPage();
@@ -247,8 +246,6 @@
 
       });
 
-      var client = new simplegeo.PlacesClient('UHYsAGwU2XyWm9Qtp7D68EBQYpnCsWEG');
-
       $.each(unique_geos(geos), function(l, geo) {
         var geoHTML = $('<li class="geo" id="geo-'+l+'"><div class="details"><h1>'+ geo.latitude +', '+ geo.longitude +'</h1><ul></ul></div></li>');
 
@@ -256,17 +253,6 @@
 
         var mapString = [geo.latitude, geo.longitude];
         $('#geo-'+l+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString)+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
-
-        client.search(geo.latitude, geo.longitude, function(err, data) {
-            if (err) {
-                console.error(err);
-            } else {
-                $('#geo-'+l+' .details').append('<strong>Nearby Places</strong><ul class="places"></ul>');
-
-                $.each(data.features.slice(0,10), function(n, feature) {
-                  $('#geo-'+l+' .details ul.places').append('<li><strong>'+feature.properties.name+'</strong><br>'+feature.properties.classifiers[0].category+'</li>');
-                });
-            }
         });
       });
     });
