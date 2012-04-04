@@ -253,7 +253,6 @@
 
         var mapString = [geo.latitude, geo.longitude];
         $('#geo-'+l+' ul').append('<li><a href="http://maps.google.com/maps?q='+encodeURIComponent(mapString)+'" target="_blank" title="View on Google Maps"><img src="http://maps.google.com/maps/api/staticmap?center='+encodeURIComponent(mapString.join(" "))+'&zoom=14&size=100x100&markers=color:green|label:A|'+mapString+'&sensor=false" class="static-map"></a></li>');
-        });
       });
     });
   </script>
