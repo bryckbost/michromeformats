@@ -1,11 +1,12 @@
 ﻿{
   "name": "Microformats for Google Chrome™",
-  "version": "0.4.11",
+  "version": "0.4.12",
+  "manifest_version": 2,
   "description": "Shows microformats on the page. Supports hCard, hCalendar, hReview, hReview-aggregate, hRecipe and geo.",
   "page_action": {
     "default_icon": "images/microformats-logo-19.png",
     "default_title" : "Click to view the microformats…",
-    "popup": "popup.html"
+    "default_popup": "popup.html"
   },
   "content_scripts": [ {
       "js": [
@@ -27,5 +28,5 @@
     "128" : "images/michromeformat-logo.png"
   },
   "permissions": [ "tabs", "http://*/*", "https://*/*" ],
-  "background_page": "background.html"
+  "background": "background.html"
 }
