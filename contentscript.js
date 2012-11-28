@@ -29,7 +29,7 @@ function discoverMicroformats() {
     geos[i] = JSON.stringify(geos[i]);
   }
 
-  chrome.extension.sendRequest({hcards: hcards, hcalendars: hcalendars, hreviews: hreviews, hreviewaggs: hreviewaggs, hrecipes: hrecipes, geos: geos});
+  chrome.extension.sendMessage({hcards: hcards, hcalendars: hcalendars, hreviews: hreviews, hreviewaggs: hreviewaggs, hrecipes: hrecipes, geos: geos});
 }
 
 discoverMicroformats();
